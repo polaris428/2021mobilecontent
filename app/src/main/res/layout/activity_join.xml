@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".JoinActivity">
+
+
+    <EditText
+        android:id="@+id/idinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+    </EditText>
+    <EditText
+        android:id="@+id/pawinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/idinput"
+        >
+
+    </EditText>
+    <EditText
+        android:id="@+id/nameinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/pawinput"
+        >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/joinbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원 가입"
+        app:layout_constraintTop_toBottomOf="@+id/nameinput">
+
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
