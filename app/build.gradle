@@ -47,6 +47,7 @@ dependencies {
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'org.jetbrains:annotations:15.0'
     implementation 'org.jetbrains:annotations:15.0'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -61,4 +62,11 @@ dependencies {
     compile 'com.mikhaellopez:circularfillableloaders:1.2.0'
 
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:27.1.1'
+
+    //noinspection GradleCompatible
+    implementation "com.android.support:support-core-utils:28.0.0"
 }

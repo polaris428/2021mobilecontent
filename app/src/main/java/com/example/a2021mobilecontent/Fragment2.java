@@ -5,10 +5,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.TableLayout;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
@@ -18,6 +22,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,61 +80,19 @@ public class Fragment2 extends Fragment {
         // Inflate the layout for this fragment
 
 
-
-
         ViewGroup fragment2 = (ViewGroup)inflater.inflate(R.layout.fragment_2,container,false);
-        lineChart = (LineChart)fragment2.findViewById(R.id.chart);
-        ct = container.getContext();
+        ViewPager vp =fragment2.findViewById(R.id.viewpager);
+        GraphAdapter adapter=new GraphAdapter(getFragmentManager());
+        vp.setAdapter(adapter);
 
-
-        List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1, 0));
-        entries.add(new Entry(2, 23));
-        entries.add(new Entry(3, 100));
-        entries.add(new Entry(4, 56));
-        entries.add(new Entry(5, 35));
-        entries.add(new Entry(6, 70));
-        entries.add(new Entry(7, 53));
-        LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
-        lineDataSet.setLineWidth(2);
-        lineDataSet.setCircleRadius(6);
-        lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setCircleColorHole(Color.BLUE);
-        lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setDrawCircleHole(true);
-        lineDataSet.setDrawCircles(true);
-        lineDataSet.setDrawHorizontalHighlightIndicator(false);
-        lineDataSet.setDrawHighlightIndicators(false);
-        lineDataSet.setDrawValues(false);
-
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.BLACK);
-        xAxis.enableGridDashedLine(8, 24, 0);
-
-        YAxis yLAxis = lineChart.getAxisLeft();
-        yLAxis.setTextColor(Color.BLACK);
-
-        YAxis yRAxis = lineChart.getAxisRight();
-        yRAxis.setDrawLabels(false);
-        yRAxis.setDrawAxisLine(false);
-        yRAxis.setDrawGridLines(false);
-
-        Description description = new Description();
-        description.setText("");
-
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setDescription(description);
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
-        lineChart.invalidate();
-
-        MyMarkerView marker = new MyMarkerView(ct,R.layout.activity_my_marker_view);
-        marker.setChartView(lineChart);
-        lineChart.setMarker(marker);
+        TabLayout tab=fragment2.findViewById(R.id.tab);
+        tab.setupWithViewPager(vp);
         return fragment2;
+    }
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
+
     }
 }

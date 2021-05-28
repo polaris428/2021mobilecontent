@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.item_fragment1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment1()).commit();
-
                         break;
                     case R.id.item_fragment2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment2()).commit();
