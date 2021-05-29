@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment1">
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <RelativeLayout
+    </TextView>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/activity_main"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        tools:context="com.example.fillableloaderexample.MainActivity">
+        android:layout_height="match_parent">
 
 
-    <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
-        android:id="@+id/circularFillableLoaders"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/circle"
-        app:cfl_border="true"
-        app:cfl_border_width="12dp"
-        app:cfl_progress="80"
-        app:cfl_wave_amplitude="0.06"
-        app:cfl_wave_color="#0F08FB" />
+        <Button
+            android:id="@+id/popbtn"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="#00FFFFFF"
+            style="?android:attr/borderlessButtonStyle">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:visibility="gone"
-        android:layout_below="@+id/circularFillableLoaders"
-        android:layout_marginTop="37dp" />
-    </RelativeLayout>
+
+        </Button>
+
+        <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
+            android:id="@+id/circularFillableLoaders"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/circle"
+            app:cfl_border="true"
+            app:cfl_border_width="12dp"
+            app:cfl_progress="80"
+            app:cfl_wave_amplitude="0.06"
+            app:cfl_wave_color="#0F08FB"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circularFillableLoaders"
+
+            android:layout_marginTop="37dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

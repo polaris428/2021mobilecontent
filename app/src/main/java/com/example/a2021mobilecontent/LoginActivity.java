@@ -25,8 +25,6 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
-
-
     public static Context context_main;
     private  ActivityLoginBinding binding;
 

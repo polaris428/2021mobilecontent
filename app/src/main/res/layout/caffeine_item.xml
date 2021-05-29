@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+
+        <ImageButton
+            android:id="@+id/iv_profile1"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_margin="10dp">
+
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/iv_profile2"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@mipmap/ic_launcher"
+            android:layout_margin="10dp"
+
+            >
+
+        </ImageButton>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="이름"
+            android:gravity="center">
+
+        </TextView>
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="이름"
+            android:gravity="center">
+
+        </TextView>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
