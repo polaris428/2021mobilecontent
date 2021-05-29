@@ -19,7 +19,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@mipmap/ic_launcher"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
 
         </ImageButton>
 
@@ -28,7 +28,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@mipmap/ic_launcher"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
 
             >
 
@@ -45,7 +45,7 @@
             android:id="@+id/name1"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:text="이름"
             android:gravity="center">
 
@@ -54,7 +54,7 @@
             android:id="@+id/name2"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:text="이름"
             android:gravity="center">
 

@@ -1,14 +1,18 @@
 package com.example.a2021mobilecontent;import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.a2021mobilecontent.databinding.Fragment1Binding;
 
 import java.util.ArrayList;
 
@@ -44,6 +48,38 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 .into(holder.iv_profile2);
         holder.name1.setText(arrayList.get(position).getName1());
         holder.name2.setText(arrayList.get(position).getName2());
+
+        holder.iv_profile1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences= context.getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
+                int Caffeine = sharedPreferences.getInt("Caffeine",100);
+                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                editor.putInt("Caffeine",arrayList.get(position+Caffeine).getAmount1());
+
+                editor.commit();
+
+
+            }
+        });
+        
+        holder.iv_profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences= context.getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
+                int Caffeine = sharedPreferences.getInt("Caffeine",100);
+                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                editor.putInt("Caffeine",arrayList.get(position).getAmount2()+Caffeine);
+
+                editor.commit();
+
+
+
+
+
+            }
+        });
+
         //holder.tv_cafeName.setText(arrayList.get(position).getCafeName());
         //holder.tv_address.setText(arrayList.get(position).getAddress());
         //holder.tv_phone.setText(arrayList.get(position).getPhone());
@@ -83,11 +119,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
 
-
-
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageView iv_profile1;
-        ImageView iv_profile2;
+        ImageButton iv_profile1;
+        ImageButton iv_profile2;
         TextView name1;
         TextView name2;
         public CustomViewHolder(@NonNull View itemView) {
@@ -102,27 +136,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             //this.tv_likeNum = itemView.findViewById(R.id.tv_likeNum);
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
 
-            ViewHolder(View itemView) {
-                super(itemView) ;
-
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int pos = getAdapterPosition() ;
-                        if (pos != RecyclerView.NO_POSITION) {
-                            // 데이터 리스트로부터 아이템 데이터 참조.
-                            Caffeine item = arrayList.get(pos) ;
-
-                            //String a=item.getCafeName();
-                            System.out.println(arrayList);
-
-                        }
-                    }
-                });
-            }
-        }
-
-
-    }}
+    }
+}

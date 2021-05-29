@@ -38,13 +38,25 @@
 
     </EditText>
 
+    <EditText
+        android:id="@+id/ageinput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="age"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/nameinput">
+
+    </EditText>
+
     <Button
         android:id="@+id/joinbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="회원 가입"
-        app:layout_constraintTop_toBottomOf="@+id/nameinput">
+        app:layout_constraintTop_toBottomOf="@+id/ageinput">
 
     </Button>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

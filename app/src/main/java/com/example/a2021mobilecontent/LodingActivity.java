@@ -22,7 +22,7 @@ public class LodingActivity extends AppCompatActivity {
 
         SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
         //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
-        String id = sf.getString("id","");
+        String id = sf.getString("email","");
         String pwe = sf.getString("pwe","");
         if(id!=""&&pwe!=""){
             firebaseAuth = firebaseAuth.getInstance();

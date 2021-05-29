@@ -1,5 +1,7 @@
 package com.example.a2021mobilecontent;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -59,6 +61,7 @@ public class Fragment1 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    int Caffeine;
     int currentProgress = 80;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,29 +72,13 @@ public class Fragment1 extends Fragment {
         View view = binding.getRoot();
 
 
-
-        binding.seekBar.setMax(100);
-        binding.seekBar.setProgress(currentProgress);
-
-        binding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                binding.circularFillableLoaders.setProgress(progress);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+        SharedPreferences sf = getContext().getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
+        //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
+         Caffeine = sf.getInt("Caffeine",100);
+        System.out.println(Caffeine);
 
 
-        });
+
 
 
         binding.popbtn.setOnClickListener(new View.OnClickListener() {
@@ -111,5 +98,9 @@ public class Fragment1 extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    public void add(){
+
+        binding.circularFillableLoaders.setProgress((400-Caffeine)/4);
     }
 }

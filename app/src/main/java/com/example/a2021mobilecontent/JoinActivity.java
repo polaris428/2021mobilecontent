@@ -67,7 +67,8 @@ public class JoinActivity extends AppCompatActivity {
 
                 SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
                 SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                editor.putString("id",email);
+                editor.putString("email",email);
+                editor.putString("id",mail1);
                 editor.putString("pwe",pwe);// key,value 형식으로 저장
                 editor.commit();
 
