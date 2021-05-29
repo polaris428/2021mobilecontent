@@ -52,29 +52,31 @@ public class JoinActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+
+
         binding.joinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = binding.idinput.getText().toString().trim();
-                final String pwd = binding.pawinput.getText().toString().trim();
-                final String name =binding.nameinput.getText().toString().trim();
+                final String pwe = binding.pawinput.getText().toString().trim();
+                //final String name =binding.nameinput.getText().toString().trim();
                 int idx = email.indexOf("@");
 
                 mail1 = email.substring(0, idx);
 
-                SharedPreferences sharedPreferences= getSharedPreferences("test", MODE_PRIVATE);    // test 이름의 기본모드 설정
+                SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
                 SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                editor.putString("inputText",mail1); // key,value 형식으로 저장
+                editor.putString("id",email);
+                editor.putString("pwe",pwe);// key,value 형식으로 저장
                 editor.commit();
 
-                databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
+                //databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
                 databaseReference.child("UserProfile").child(mail1).child("mouney").setValue(50000);
                 databaseReference.child("UserProfile").child(mail1).child("stock").setValue(0);
                 //final String name = name_join.getText().toString().trim();
                 //공백인 부분을 제거하고 보여주는 trim();
-
-
-                firebaseAuth.createUserWithEmailAndPassword(email, pwd)
+                firebaseAuth.createUserWithEmailAndPassword(email, pwe)
                         .addOnCompleteListener(JoinActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {

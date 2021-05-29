@@ -13,7 +13,9 @@
         android:id="@+id/idinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="id"
         app:layout_constraintTop_toTopOf="parent"
+
         >
 
     </EditText>
@@ -21,6 +23,7 @@
         android:id="@+id/pawinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="paw"
         app:layout_constraintTop_toBottomOf="@+id/idinput"
         >
 
@@ -29,6 +32,7 @@
         android:id="@+id/nameinput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="name"
         app:layout_constraintTop_toBottomOf="@+id/pawinput"
         >
 

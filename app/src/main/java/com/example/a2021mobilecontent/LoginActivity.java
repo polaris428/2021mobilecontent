@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,11 +37,15 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
+        //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
+        String id = sf.getString("id","");
+        String pwe = sf.getString("pwe","");
+        binding.idinput.setText(id);
+        binding.pweinput.setText(pwe);
 
 
 
-
-      
         firebaseAuth = firebaseAuth.getInstance();//firebaseAuth의 인스턴스를 가져옴
         binding.loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +61,11 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {//성공했을때
+                                    SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
+                                    SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                                    editor.putString("id",email);
+                                    editor.putString("pwe",pwd);// key,value 형식으로 저장
+                                    editor.commit();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("id",email);
                                     startActivity(intent);
