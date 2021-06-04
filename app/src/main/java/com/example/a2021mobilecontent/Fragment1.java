@@ -84,18 +84,15 @@ public class Fragment1 extends Fragment {
         SharedPreferences sf = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         String id = sf.getString("id","");
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
-        
+
 
         binding.circularFillableLoaders.setProgress(100-value);
 
         binding.popbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Caffeine_Popup dlg = new Caffeine_Popup(getContext());
-                //dlg.setCanceledOnTouchOutside(true);
-                //dlg.setCancelable(true);
-                //dlg.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-                //dlg.show();
+                Intent intent = new Intent(getActivity(), Caffeine_Popup.class);
+                startActivity(intent);
 
             }
         });

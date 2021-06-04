@@ -44,7 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getPhoto1())
-                .into(holder.iv_profile);
+                .into(holder.iv_profile1);
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getPhoto2())
                 .into(holder.iv_profile2);
@@ -67,7 +67,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             }
         });
 
-        holder.iv_profile.setOnClickListener(new View.OnClickListener() {
+        holder.iv_profile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, item.getPhoto1() +"", Toast.LENGTH_LONG).show();
@@ -102,13 +102,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
+        ImageButton iv_profile1;
         ImageButton iv_profile2;
 
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile = itemView.findViewById(R.id.iv_profile1);
+            this.iv_profile1 = itemView.findViewById(R.id.iv_profile1);
             this.iv_profile2 = itemView.findViewById(R.id.iv_profile2);
 
 
