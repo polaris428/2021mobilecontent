@@ -1,18 +1,19 @@
 package com.example.a2021mobilecontent;import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.a2021mobilecontent.databinding.Fragment1Binding;
+import com.example.a2021mobilecontent.Caffeine;
+import com.example.a2021mobilecontent.R;
 
 import java.util.ArrayList;
 
@@ -40,65 +41,44 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getPhoto1())
-                .into(holder.iv_profile1);
+                .into(holder.iv_profile);
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getPhoto2())
                 .into(holder.iv_profile2);
-        holder.name1.setText(arrayList.get(position).getName1());
-        holder.name2.setText(arrayList.get(position).getName2());
-
-        holder.iv_profile1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences= context.getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
-                int Caffeine = sharedPreferences.getInt("Caffeine",100);
-                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                editor.putInt("Caffeine",arrayList.get(position+Caffeine).getAmount1());
-
-                editor.commit();
-
-
-            }
-        });
-        
-        holder.iv_profile2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences= context.getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
-                int Caffeine = sharedPreferences.getInt("Caffeine",100);
-                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                editor.putInt("Caffeine",arrayList.get(position).getAmount2()+Caffeine);
-
-                editor.commit();
-
-
-
-
-
-            }
-        });
-
         //holder.tv_cafeName.setText(arrayList.get(position).getCafeName());
         //holder.tv_address.setText(arrayList.get(position).getAddress());
-        //holder.tv_phone.setText(arrayList.get(position).getPhone());
+        //lholder.tv_phone.setText(arrayList.get(position).getPhone());
         //holder.tv_likeNum.setText(String.valueOf(arrayList.get(position).getLikeNum()));
 
         Caffeine item = arrayList.get(position);
 
-            // 값 설정 ( set )
+        // 값 설정 ( set )
 
-            //Here it is simply write onItemClick listener here
+        //Here it is simply write onItemClick listener here
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
 
-                    //Toast.makeText(context, item.getCafeName() +"", Toast.LENGTH_LONG).show();
-                }
-            });
+                Toast.makeText(context, item.getName1() +"", Toast.LENGTH_LONG).show();
+            }
+        });
 
+        holder.iv_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, item.getPhoto1() +"", Toast.LENGTH_LONG).show();
+            }
+        });
+        holder.iv_profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, item.getPhoto2() +"", Toast.LENGTH_LONG).show();
+            }
+        });
     }
     class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -119,23 +99,44 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
 
+
+
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile1;
+        ImageButton iv_profile;
         ImageButton iv_profile2;
-        TextView name1;
-        TextView name2;
+
+
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.iv_profile1 = itemView.findViewById(R.id.iv_profile1);
+            this.iv_profile = itemView.findViewById(R.id.iv_profile1);
             this.iv_profile2 = itemView.findViewById(R.id.iv_profile2);
-            this.name1=itemView.findViewById(R.id.name1);
-            this.name2=itemView.findViewById(R.id.name2);
-            //this.tv_cafeName = itemView.findViewById(R.id.tv_cafeName);
-            //this.tv_address = itemView.findViewById(R.id.tv_address);
-            //this.tv_phone = itemView.findViewById(R.id.tv_phone);
-            //this.tv_likeNum = itemView.findViewById(R.id.tv_likeNum);
+
+
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            ViewHolder(View itemView) {
+                super(itemView) ;
+
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int pos = getAdapterPosition() ;
+                        if (pos != RecyclerView.NO_POSITION) {
+                            // 데이터 리스트로부터 아이템 데이터 참조.
+                            Caffeine item = arrayList.get(pos) ;
+
+
+                            System.out.println(arrayList);
+
+                        }
+                    }
+                });
+
+            }
         }
 
 
-    }
-}
+
+    }}

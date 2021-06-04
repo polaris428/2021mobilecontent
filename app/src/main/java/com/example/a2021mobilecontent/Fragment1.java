@@ -1,6 +1,7 @@
 package com.example.a2021mobilecontent;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -10,10 +11,16 @@ import android.os.Debug;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.a2021mobilecontent.databinding.Fragment1Binding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +29,10 @@ import com.example.a2021mobilecontent.databinding.Fragment1Binding;
  */
 public class Fragment1 extends Fragment {
     private Fragment1Binding binding;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    public  int value;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,10 +70,10 @@ public class Fragment1 extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
-    int Caffeine;
-    int currentProgress = 80;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,37 +81,58 @@ public class Fragment1 extends Fragment {
 
         binding = Fragment1Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        SharedPreferences sf = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        String id = sf.getString("id","");
+        DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
+        
 
-
-        SharedPreferences sf = getContext().getSharedPreferences("Caffeine", Context.MODE_PRIVATE);
-        //text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
-         Caffeine = sf.getInt("Caffeine",100);
-        System.out.println(Caffeine);
-
-
-
-
+        binding.circularFillableLoaders.setProgress(100-value);
 
         binding.popbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 커스텀 다이얼로그를 생성한다. 사용자가 만든 클래스이다.
-                Caffeine_Popup dlg = new Caffeine_Popup( getActivity());
-                dlg.show();
+                //Caffeine_Popup dlg = new Caffeine_Popup(getContext());
+                //dlg.setCanceledOnTouchOutside(true);
+                //dlg.setCancelable(true);
+                //dlg.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                //dlg.show();
 
             }
         });
+        binding.test1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Caffeine.setValue(value+10);
+            }
+        });
+        binding.test2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Caffeine.setValue(value-10);
+            }
+        });
 
+        Caffeine.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                value = dataSnapshot.getValue(Integer.class);
+                binding.circularFillableLoaders.setProgress(100-value);
+                System.out.println(value);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
         return view;
 
     }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-    public void add(){
 
-        binding.circularFillableLoaders.setProgress((400-Caffeine)/4);
-    }
+
+
 }

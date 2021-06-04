@@ -52,7 +52,7 @@ public class JoinActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-
+        String name=binding.nameinput.getText().toString();
 
 
         binding.joinbtn.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +72,9 @@ public class JoinActivity extends AppCompatActivity {
                 editor.putString("pwe",pwe);// key,value 형식으로 저장
                 editor.commit();
 
-                //databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
-                databaseReference.child("UserProfile").child(mail1).child("mouney").setValue(50000);
-                databaseReference.child("UserProfile").child(mail1).child("stock").setValue(0);
+                databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
+                //databaseReference.child("UserProfile").child(mail1).child("mouney").setValue(50000);
+                databaseReference.child("UserProfile").child(mail1).child("Caffeine").setValue(0);
                 //final String name = name_join.getText().toString().trim();
                 //공백인 부분을 제거하고 보여주는 trim();
                 firebaseAuth.createUserWithEmailAndPassword(email, pwe)

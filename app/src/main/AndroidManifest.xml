@@ -16,13 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.2021MobileContent"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Caffeine_Popup"></activity>
+        <activity
+            android:name=".Caffeine_Popup"/>
+
+
+
         <activity android:name=".LodingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity
             android:name=".MyMarkerView"

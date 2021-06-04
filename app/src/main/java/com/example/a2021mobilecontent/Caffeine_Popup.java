@@ -1,51 +1,44 @@
 package com.example.a2021mobilecontent;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Window;
-import android.widget.TextView;
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
-public class Caffeine_Popup extends Dialog {
-    private Context context;
-
-
-    public Caffeine_Popup(@NonNull Context context) {
-        super(context);
-        this.context = context;
-    }
+public class Caffeine_Popup extends AppCompatActivity {
     private RecyclerView recyclerView;
-
     private RecyclerView.Adapter adapter;
-
 
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Caffeine> arrayList;
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caffeine_popup);
+
         recyclerView = findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
@@ -71,10 +64,12 @@ public class Caffeine_Popup extends Dialog {
                 Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
             }
         });
-
-        adapter = new CustomAdapter(arrayList, getContext());
+        adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
+
     }
-    }
+
+}
+
 
 
