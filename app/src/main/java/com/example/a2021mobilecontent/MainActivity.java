@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
         String id = sf.getString("id","");
-
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable()  {
+            public void run() {
+                binding.wellcom.setVisibility(View.GONE);
+            }
+        }, 3000); // 0.5초후
         DatabaseReference name= database.getReference("UserProfile").child(id).child("name");
         name.addValueEventListener(new ValueEventListener() {
             @Override
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 // whenever data at this location is updated.
                 String username = dataSnapshot.getValue(String.class);
                 binding.wellcom.setText(username+"님 환영합니다");
+
             }
 
             @Override

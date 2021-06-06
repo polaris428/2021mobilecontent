@@ -22,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Fragment1#newInstance} factory method to
@@ -31,8 +34,11 @@ public class Fragment1 extends Fragment {
     private Fragment1Binding binding;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    public  class sa{
+        public  int value;
+    }
     public  int value;
+    public  String name;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -78,15 +84,21 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        long now = System.currentTimeMillis();
+
+        Date date = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String getTime = sdf.format(date);
 
         binding = Fragment1Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
         SharedPreferences sf = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         String id = sf.getString("id","");
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
-
+        DatabaseReference Name = database.getReference("UserProfile").child(id).child("Caffeine");
 
         binding.circularFillableLoaders.setProgress(100-value);
+
 
         binding.popbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +127,9 @@ public class Fragment1 extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 value = dataSnapshot.getValue(Integer.class);
-                binding.circularFillableLoaders.setProgress(100-value);
+
+                binding.circularFillableLoaders.setProgress(value);
+                binding.intake.setText("일일 섭취량\n"+value+"/300mg");
                 System.out.println(value);
 
             }
@@ -126,6 +140,7 @@ public class Fragment1 extends Fragment {
 
             }
         });
+
         return view;
 
     }
