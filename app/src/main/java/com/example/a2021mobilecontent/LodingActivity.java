@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,6 +34,8 @@ public class LodingActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {//성공했을때
 
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
+                                Database database=new Database();
+                                database.day ();
 
                                 startActivity(intent);
 

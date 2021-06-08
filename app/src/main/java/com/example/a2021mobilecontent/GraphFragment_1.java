@@ -1,6 +1,7 @@
 package com.example.a2021mobilecontent;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +42,7 @@ public class GraphFragment_1 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    public ArrayList day1 = new ArrayList();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -59,6 +66,7 @@ public class GraphFragment_1 extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -83,56 +91,97 @@ public class GraphFragment_1 extends Fragment {
         ct = container.getContext();
 
 
+
         List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(1, 0));
-        entries.add(new Entry(2, 23));
-        entries.add(new Entry(3, 100));
-        entries.add(new Entry(4, 56));
-        entries.add(new Entry(5, 35));
-        entries.add(new Entry(6, 70));
-        entries.add(new Entry(7, 53));
-        LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
-        lineDataSet.setLineWidth(2);
-        lineDataSet.setCircleRadius(6);
-        lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setCircleColorHole(Color.BLUE);
-        lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
-        lineDataSet.setDrawCircleHole(true);
-        lineDataSet.setDrawCircles(true);
-        lineDataSet.setDrawHorizontalHighlightIndicator(false);
-        lineDataSet.setDrawHighlightIndicators(false);
-        lineDataSet.setDrawValues(false);
+        ArrayList<Integer> a=new ArrayList();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr");
+        arr.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int count=0;
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    int url = ds.getValue(Integer.class);
 
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
+                    a.add(url);
 
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.BLACK);
-        xAxis.enableGridDashedLine(8, 24, 0);
+                    Log.d("adsf",a+"");
+                    if(a.size()==5){
+                        for(int i : a)
+                        {
+                            count++;
+                            entries.add(new Entry(count,i));
+                            Log.d("adsf",i+"");
+                            LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
+                            lineDataSet.setLineWidth(2);
+                            lineDataSet.setCircleRadius(6);
+                            lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
+                            lineDataSet.setCircleColorHole(Color.BLUE);
+                            lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
+                            lineDataSet.setDrawCircleHole(true);
+                            lineDataSet.setDrawCircles(true);
+                            lineDataSet.setDrawHorizontalHighlightIndicator(false);
+                            lineDataSet.setDrawHighlightIndicators(false);
+                            lineDataSet.setDrawValues(false);
 
-        YAxis yLAxis = lineChart.getAxisLeft();
-        yLAxis.setTextColor(Color.BLACK);
+                            LineData lineData = new LineData(lineDataSet);
+                            lineChart.setData(lineData);
 
-        YAxis yRAxis = lineChart.getAxisRight();
-        yRAxis.setDrawLabels(false);
-        yRAxis.setDrawAxisLine(false);
-        yRAxis.setDrawGridLines(false);
+                            XAxis xAxis = lineChart.getXAxis();
+                            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                            xAxis.setTextColor(Color.BLACK);
+                            xAxis.enableGridDashedLine(8, 24, 0);
 
-        Description description = new Description();
-        description.setText("");
+                            YAxis yLAxis = lineChart.getAxisLeft();
+                            yLAxis.setTextColor(Color.BLACK);
 
-        lineChart.setDoubleTapToZoomEnabled(false);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setDescription(description);
-        lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
-        lineChart.invalidate();
+                            YAxis yRAxis = lineChart.getAxisRight();
+                            yRAxis.setDrawLabels(false);
+                            yRAxis.setDrawAxisLine(false);
+                            yRAxis.setDrawGridLines(false);
 
-        MyMarkerView marker = new MyMarkerView(ct,R.layout.activity_my_marker_view);
-        marker.setChartView(lineChart);
-        lineChart.setMarker(marker);
+                            Description description = new Description();
+                            description.setText("");
+
+                            lineChart.setDoubleTapToZoomEnabled(false);
+                            lineChart.setDrawGridBackground(false);
+                            lineChart.setDescription(description);
+                            lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
+                            lineChart.invalidate();
+
+                            MyMarkerView marker = new MyMarkerView(ct,R.layout.activity_my_marker_view);
+                            marker.setChartView(lineChart);
+                            lineChart.setMarker(marker);
+
+                        }
+
+                    }
+
+
+
+
+
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+
+
         return Grapfragment1;
     }
+
+
 
     @Override
     public void onDestroy() {

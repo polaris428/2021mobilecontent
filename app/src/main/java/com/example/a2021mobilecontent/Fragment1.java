@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Debug;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,11 +85,9 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        long now = System.currentTimeMillis();
 
-        Date date = new Date(now);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        String getTime = sdf.format(date);
+
+
 
         binding = Fragment1Binding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -99,13 +98,21 @@ public class Fragment1 extends Fragment {
 
         binding.circularFillableLoaders.setProgress(100-value);
 
-
+        
         binding.popbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Caffeine_Popup.class);
                 startActivity(intent);
 
+            }
+        
+        });
+        Database da=new Database();
+        binding.reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                da.clear(id,1);
             }
         });
         binding.test1.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +134,9 @@ public class Fragment1 extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 value = dataSnapshot.getValue(Integer.class);
-
-                binding.circularFillableLoaders.setProgress(value);
+                GraphFragment_1 g=new GraphFragment_1();
+                Log.d("TAF",g.day1+"");
+                binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
                 System.out.println(value);
 
