@@ -3,25 +3,30 @@
     <item
         android:id="@+id/item_fragment1"
         android:enabled="true"
-        android:title="1">
+        android:title=""
+        android:icon="@drawable/ic_user">
 
     </item>
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
-        android:title="2">
+        android:title=""
+        android:icon="@drawable/ic_rank"
+        >
 
     </item>
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
-        android:title="3">
+        android:title=""
+        android:icon="@drawable/ic_cam">
 
     </item>
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
-        android:title="4">
+        android:title=""
+        android:icon="@drawable/ic_tro">
 
     </item>
 

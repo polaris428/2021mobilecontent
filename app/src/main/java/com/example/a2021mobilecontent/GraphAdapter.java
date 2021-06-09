@@ -23,8 +23,8 @@ public class GraphAdapter extends FragmentStatePagerAdapter {
         items.add(new GraphFragment_1());
         items.add(new GraphFragment_2());
 
-        itext.add("그래프");
-        itext.add("통계");
+        itext.add("카폐인 섭취량");
+        itext.add("수면 시간");
 
     }
 

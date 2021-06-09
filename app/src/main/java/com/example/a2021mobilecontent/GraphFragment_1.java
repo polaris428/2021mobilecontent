@@ -93,36 +93,63 @@ public class GraphFragment_1 extends Fragment {
 
 
         List<Entry> entries = new ArrayList<>();
-        ArrayList<Integer> a=new ArrayList();
+        ArrayList<Integer> arrlist=new ArrayList();
+        ArrayList<Integer> daylist=new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr");
+        DatabaseReference day = database.getReference("UserProfile").child("iou1056212").child("day");
+
 
         arr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                int count=0;
+                int count=-1;
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     int url = ds.getValue(Integer.class);
 
-                    a.add(url);
+                    arrlist.add(url);
 
-                    Log.d("adsf",a+"");
-                    if(a.size()==5){
-                        for(int i : a)
+
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+        day.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                int count=-1;
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    int url = ds.getValue(Integer.class);
+
+                    daylist.add(url);
+
+                    if(arrlist.size()==5&&daylist.size()==5){
+
+                        for(int i : daylist)
                         {
-
                             count++;
-                            entries.add(new Entry(count,i));
-                            Log.d("adsf",i+"");
+                            entries.add(new Entry(i,arrlist.get(count)));
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
-                            lineDataSet.setCircleColor(Color.parseColor("#FFA1B4DC"));
+                            lineDataSet.setCircleColor(Color.parseColor("#000000"));
                             lineDataSet.setCircleColorHole(Color.BLUE);
-                            lineDataSet.setColor(Color.parseColor("#FFA1B4DC"));
+                            lineDataSet.setColor(Color.parseColor("#000000"));
                             lineDataSet.setDrawCircleHole(true);
                             lineDataSet.setDrawCircles(true);
                             lineDataSet.setDrawHorizontalHighlightIndicator(false);
@@ -158,17 +185,11 @@ public class GraphFragment_1 extends Fragment {
                             marker.setChartView(lineChart);
                             lineChart.setMarker(marker);
 
-                        }
 
+                        }
                     }
 
-
-
-
-
-
                 }
-
 
 
             }
@@ -179,6 +200,7 @@ public class GraphFragment_1 extends Fragment {
 
             }
         });
+
 
 
         return Grapfragment1;

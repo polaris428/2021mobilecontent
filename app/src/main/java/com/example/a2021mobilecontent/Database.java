@@ -59,11 +59,6 @@ public class Database {
         DatabaseReference day = database.getReference("UserProfile").child(id).child("day");
 
 
-        ArrayList a=new ArrayList();
-        for (int i=0;i<7;i++){
-            a.add(i*2);
-        }
-        day.setValue(a);
 
     }
 
