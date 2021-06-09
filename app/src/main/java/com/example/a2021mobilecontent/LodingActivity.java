@@ -35,7 +35,7 @@ public class LodingActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
                                 Database database=new Database();
-                                database.day ();
+                                database.test();
 
                                 startActivity(intent);
 

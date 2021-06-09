@@ -96,12 +96,14 @@ public class GraphFragment_1 extends Fragment {
         ArrayList<Integer> a=new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr");
+
         arr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 int count=0;
+
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     int url = ds.getValue(Integer.class);
 
@@ -111,6 +113,7 @@ public class GraphFragment_1 extends Fragment {
                     if(a.size()==5){
                         for(int i : a)
                         {
+
                             count++;
                             entries.add(new Entry(count,i));
                             Log.d("adsf",i+"");

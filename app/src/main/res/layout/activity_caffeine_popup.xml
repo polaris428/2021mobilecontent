@@ -6,7 +6,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Caffeine_Popup">
+
+    <HorizontalScrollView
+        android:id="@+id/sv_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <!-- ImageView, Button 등을 가로로 배치 -->
+            <ImageButton
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:backgroundTint="#ffffff"
+                android:src="@mipmap/ic_launcher">
+            </ImageButton>
+
+            <ImageView
+
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:backgroundTint="#ffffff"
+                android:src="@drawable/starbucks">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:backgroundTint="#ffffff"
+                android:src="@drawable/ediya"
+                >
+            </ImageView>
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:backgroundTint="#ffffff"
+                android:src="@drawable/angelinus">
+            </ImageView>
+            <ImageButton
+
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:backgroundTint="#ffffff"
+              >
+            </ImageButton>
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
