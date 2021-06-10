@@ -34,8 +34,7 @@ public class LodingActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {//성공했을때
 
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
-                                Database database=new Database();
-                                database.test();
+
 
                                 startActivity(intent);
 

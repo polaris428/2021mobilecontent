@@ -5,12 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment1">
-    <TextView
-        android:id="@+id/t"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-    </TextView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
@@ -18,10 +13,45 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@+id/circularFillableLoaders"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/circularFillableLoaders"
             android:orientation="vertical"
+            android:layout_marginTop="100dp"
+            android:padding="11dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/popbtn"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:backgroundTint="#00FFFFFF">
+
+                </Button>
+
+                <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
+                    android:id="@+id/circularFillableLoaders"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_launcher_foreground"
+                    app:cfl_border="true"
+                    app:cfl_border_width="12dp"
+                    app:cfl_progress="80"
+                    app:cfl_wave_amplitude="0.06"
+                    app:cfl_wave_color="#DCDA831D"
+                     />
+
+            </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -37,12 +67,9 @@
                 android:id="@+id/intake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="35dp"
+                android:textSize="30dp"
                 android:hint="dasfdd"
                 android:textColor="#000000"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/circularFillableLoaders"
                 android:layout_marginBottom="30dp">
 
             </TextView>
@@ -55,36 +82,7 @@
             </TextView>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/popbtn"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintLeft_toLeftOf="@+id/circularFillableLoaders"
-            app:layout_constraintRight_toRightOf="@+id/circularFillableLoaders"
-            app:layout_constraintTop_toTopOf="@+id/circularFillableLoaders"
-            app:layout_constraintBottom_toBottomOf="@+id/circularFillableLoaders"
-            android:backgroundTint="#00FFFFFF"
-            style="?android:attr/borderlessButtonStyle">
-
-
-        </Button>
-
-        <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
-            android:id="@+id/circularFillableLoaders"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_launcher_foreground"
-            android:layout_marginLeft="40dp"
-            app:cfl_border="true"
-            app:cfl_border_width="12dp"
-            app:cfl_progress="80"
-            app:cfl_wave_amplitude="0.06"
-            app:cfl_wave_color="#DCDA831D"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="300dp"/>
+        </LinearLayout>
         <Button
             android:id="@+id/reset"
             android:layout_width="wrap_content"

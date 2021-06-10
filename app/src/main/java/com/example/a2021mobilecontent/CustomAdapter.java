@@ -1,4 +1,5 @@
 package com.example.a2021mobilecontent;import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -75,22 +76,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             public void onClick(View v) {
                 Context context = v.getContext();
 
-                Toast.makeText(context, item.getAmount1() +"", Toast.LENGTH_LONG).show();
+
+               // Toast.makeText(context, item.getAmount1() +"", Toast.LENGTH_LONG).show();
             }
         });
 
         holder.iv_profile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Caffeine.setValue(value+item.getAmount1());
-                Toast.makeText(context, item.getAmount2()+"", Toast.LENGTH_LONG).show();
+               // Caffeine.setValue(value+item.getAmount1());
+
+                //Toast.makeText(context, item.getAmount2()+"", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                v.getContext().startActivity(intent);
             }
         });
         holder.iv_profile2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Caffeine.setValue(value+item.getAmount2());
-                Toast.makeText(context, item.getPhoto2() +"", Toast.LENGTH_LONG).show();
+               // Caffeine.setValue(value+item.getAmount2());
+                //Toast.makeText(context, item.getPhoto2() +"", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                //intent.putExtra("number", position);
+                //intent.putExtra("title",itemList.get(position).getItem_title());
+                v.getContext().startActivity(intent);
+
+
+
             }
         });
 

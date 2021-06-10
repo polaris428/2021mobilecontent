@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.a2021mobilecontent.databinding.ActivityCaffeinePopupBinding;
+import com.example.a2021mobilecontent.databinding.ActivityJoinBinding;
+import com.example.a2021mobilecontent.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,11 +35,14 @@ public class Caffeine_Popup extends AppCompatActivity {
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-
+    ActivityCaffeinePopupBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caffeine_popup);
+        binding= ActivityCaffeinePopupBinding.inflate(getLayoutInflater());
+        View view=binding.getRoot();
+        setContentView(view);
 
 
         recyclerView = findViewById(R.id.recyclerView); // 아디 연결
@@ -44,11 +50,14 @@ public class Caffeine_Popup extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
 
-        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
 
-        databaseReference = database.getReference("Caffeine"); // DB 테이블 연결
+
+    }
+    public void database(){
+        binding.svLayout.setVisibility(View.GONE);
+        Log.d("adsf","3");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -69,6 +78,29 @@ public class Caffeine_Popup extends AppCompatActivity {
         });
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
+        Log.d("adsf","2");
+    }
+    public void Kinds(View view){
+        arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
+
+        database = FirebaseDatabase.getInstance();
+        switch (view.getId()) {
+            case R.id.Can:
+                databaseReference = database.getReference("Caffeine");
+                database();
+                Log.d("adsf","1");
+                break;
+            case R.id.Starbucks:
+                databaseReference = database.getReference("Starbucks");
+                database();
+                break;
+            case R.id.Ediya:
+                databaseReference = database.getReference("Ediya");
+                database();
+
+
+
+        }
 
     }
 
