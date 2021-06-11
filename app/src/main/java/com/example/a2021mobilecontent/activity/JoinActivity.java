@@ -63,9 +63,10 @@ public class JoinActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
                 editor.putString("email",email);
                 editor.putString("id",mail1);
-                editor.putString("pwe",pwe);// key,value 형식으로 저장
+                editor.putString("pwe",pwe);
                 editor.commit();
 
+                databaseReference.child("UserProfile").child(mail1).child("id").setValue(mail1);
                 databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
                 //databaseReference.child("UserProfile").child(mail1).child("mouney").setValue(50000);
                 databaseReference.child("UserProfile").child(mail1).child("Caffeine").setValue(0);

@@ -121,7 +121,12 @@ public class Fragment1 extends Fragment {
         binding.reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sc = getContext().getSharedPreferences("Count", Context.MODE_PRIVATE);  // test 이름의 기본모드 설정
+                SharedPreferences.Editor editor= sc.edit();
+                editor.putInt("count",0);
+                editor.commit();
                 da.clear(id,1);
+
             }
         });
         binding.test1.setOnClickListener(new View.OnClickListener() {

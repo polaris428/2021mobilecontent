@@ -28,7 +28,8 @@ public class Database {
         Caffeine.setValue(0);
 
 
-
+        DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
+        databaseReference.removeValue();
 
     }
 

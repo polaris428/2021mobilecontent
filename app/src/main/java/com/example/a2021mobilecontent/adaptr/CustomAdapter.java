@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.a2021mobilecontent.Caffeine;
+import com.example.a2021mobilecontent.DataCaffeine;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.activity.MainActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -27,11 +28,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     private ArrayList<Caffeine> arrayList;
     private Context context;
-    //어댑터에서 액티비티 액션을 가져올 때 context가 필요한데 어댑터에는 context가 없다.
-    //선택한 액티비티에 대한 context를 가져올 때 필요하다.
+    DataCaffeine dataCaffeine=new DataCaffeine();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     int value;
-
+    int count;
 
     public CustomAdapter(ArrayList<Caffeine> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -58,11 +58,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 .into(holder.iv_profile2);
         holder.name1.setText(arrayList.get(position).getName1());
         holder.name2.setText(arrayList.get(position).getName2());
-        //holder.tv_address.setText(arrayList.get(position).getAddress());
-        //lholder.tv_phone.setText(arrayList.get(position).getPhone());
-        //holder.tv_likeNum.setText(String.valueOf(arrayList.get(position).getLikeNum()));
         SharedPreferences sf = context.getSharedPreferences("Login", Context.MODE_PRIVATE);
         String id = sf.getString("id","");
+        SharedPreferences sc = context.getSharedPreferences("Count", Context.MODE_PRIVATE);
+        count = sc.getInt("Count", 0);
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
         Caffeine item = arrayList.get(position);
 
@@ -82,9 +81,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.iv_profile1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Caffeine.setValue(value+item.getAmount1());
-
-                //Toast.makeText(context, item.getAmount2()+"", Toast.LENGTH_LONG).show();
+                Caffeine.setValue(value+item.getAmount1());
+                dataCaffeine.add(id,item.getPhoto1(), item.getName1(),item.getAmount1(), count);
+                count=count+1;
+                SharedPreferences.Editor editor= sc.edit();
+                editor.putInt("Count",count);
+                editor.commit();
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 v.getContext().startActivity(intent);
             }
@@ -94,10 +96,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             public void onClick(View v) {
                // Caffeine.setValue(value+item.getAmount2());
                 //Toast.makeText(context, item.getPhoto2() +"", Toast.LENGTH_LONG).show();
-
+                Caffeine.setValue(value+item.getAmount2());
+                dataCaffeine.add(id,item.getPhoto2(), item.getName2(),item.getAmount2(), count);
+                count=count+1;
+                SharedPreferences.Editor editor= sc.edit();
+                editor.putInt("Count",count);
+                editor.commit();
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
-                //intent.putExtra("number", position);
-                //intent.putExtra("title",itemList.get(position).getItem_title());
                 v.getContext().startActivity(intent);
 
 

@@ -47,7 +47,6 @@ public class Caffeine_Popup extends AppCompatActivity {
 
 
 
-
     }
 
     public void database(){

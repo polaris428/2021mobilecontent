@@ -1,13 +1,31 @@
 package com.example.a2021mobilecontent.activity;
 
 public class Usercaffeine {
-    private  String Photo1;
+    private  String Photo;
+    private  String Name;
+    private  int Amount;
 
-    public String getPhoto1() {
-        return Photo1;
+    public int getAmount() {
+        return Amount;
     }
 
-    public void setPhoto1(String photo1) {
-        Photo1 = photo1;
+    public void setAmount(int amount) {
+        Amount = amount;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getPhoto() {
+        return Photo;
+    }
+
+    public void setPhoto(String photo) {
+        Photo = photo;
     }
 }

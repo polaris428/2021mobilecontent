@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,8 +31,6 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.CustomViewHolder> {
     private ArrayList<Usercaffeine> arrayList;
     private Context context;
-    //어댑터에서 액티비티 액션을 가져올 때 context가 필요한데 어댑터에는 context가 없다.
-    //선택한 액티비티에 대한 context를 가져올 때 필요하다.
 
 
     public UserAdapter(ArrayList<Usercaffeine> arrayList, Context context) {
@@ -51,11 +50,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.CustomViewHold
     @Override
     public void onBindViewHolder(@NonNull @NotNull UserAdapter.CustomViewHolder holder, int position) {
         Glide.with(holder.itemView)
-                .load(arrayList.get(position).getPhoto1())
+                .load(arrayList.get(position).getPhoto())
                 .into(holder.iv_profile);
 
-
-
+        holder.name.setText(arrayList.get(position).getName());
+        holder.amount.setText(arrayList.get(position).getAmount()+"");
         Usercaffeine item = arrayList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +102,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.CustomViewHold
 
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        ImageButton iv_profile;
-
+        ImageView iv_profile;
+        TextView name;
+        TextView amount;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
+            this.name=itemView.findViewById(R.id.name);
+            this.amount=itemView.findViewById(R.id.amount);
 
         }
 
