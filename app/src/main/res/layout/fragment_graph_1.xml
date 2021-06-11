@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".GraphFragment_1">
+    tools:context=".fragment.infragment.GraphFragment_1">
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart"

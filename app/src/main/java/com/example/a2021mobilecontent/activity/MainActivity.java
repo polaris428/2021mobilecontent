@@ -1,19 +1,21 @@
-package com.example.a2021mobilecontent;
+package com.example.a2021mobilecontent.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 
+import com.example.a2021mobilecontent.fragment.Fragment1;
+import com.example.a2021mobilecontent.fragment.Fragment2;
+import com.example.a2021mobilecontent.fragment.Fragment3;
+import com.example.a2021mobilecontent.fragment.Fragment4;
+import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.databinding.ActivityMainBinding;
-import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

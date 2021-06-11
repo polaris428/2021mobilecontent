@@ -17,11 +17,11 @@
         android:theme="@style/Theme.2021MobileContent"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Caffeine_Popup"/>
+            android:name=".activity.Caffeine_Popup"/>
 
 
 
-        <activity android:name=".LodingActivity">
+        <activity android:name=".activity.LodingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,9 +33,9 @@
         <activity
             android:name=".MyMarkerView"
             tools:ignore="Instantiatable" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.JoinActivity" />
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity3" />
     </application>

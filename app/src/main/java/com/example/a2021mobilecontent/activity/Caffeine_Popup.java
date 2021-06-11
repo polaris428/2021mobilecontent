@@ -1,28 +1,23 @@
-package com.example.a2021mobilecontent;
+package com.example.a2021mobilecontent.activity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.a2021mobilecontent.Caffeine;
+import com.example.a2021mobilecontent.adaptr.CustomAdapter;
+import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.databinding.ActivityCaffeinePopupBinding;
-import com.example.a2021mobilecontent.databinding.ActivityJoinBinding;
-import com.example.a2021mobilecontent.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -54,9 +49,9 @@ public class Caffeine_Popup extends AppCompatActivity {
 
 
     }
+
     public void database(){
         binding.svLayout.setVisibility(View.GONE);
-        Log.d("adsf","3");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,8 +90,14 @@ public class Caffeine_Popup extends AppCompatActivity {
                 database();
                 break;
             case R.id.Ediya:
-                databaseReference = database.getReference("Ediya");
+                databaseReference = database.getReference("EDIYA");
                 database();
+                break;
+            case R.id.Angelinus:
+                databaseReference = database.getReference("CoffeeBin");
+                database();
+                break;
+
 
 
 

@@ -1,13 +1,9 @@
 package com.example.a2021mobilecontent;
 
-import android.util.Log;
-
+import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
 import com.github.mikephil.charting.data.Entry;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

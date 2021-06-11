@@ -1,13 +1,12 @@
-package com.example.a2021mobilecontent;
-
-import android.os.Bundle;
+package com.example.a2021mobilecontent.adaptr;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
+import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_2;
 
 import java.util.ArrayList;
 

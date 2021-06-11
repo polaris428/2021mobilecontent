@@ -1,14 +1,11 @@
-package com.example.a2021mobilecontent;import android.content.Context;
+package com.example.a2021mobilecontent.adaptr;import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.a2021mobilecontent.Caffeine;
 import com.example.a2021mobilecontent.R;
+import com.example.a2021mobilecontent.activity.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -126,6 +124,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     }
 
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
@@ -186,4 +185,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
 
-    }}
+    }
+
+
+}

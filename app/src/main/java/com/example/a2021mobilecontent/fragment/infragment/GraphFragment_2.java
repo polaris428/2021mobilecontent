@@ -1,4 +1,4 @@
-package com.example.a2021mobilecontent;
+package com.example.a2021mobilecontent.fragment.infragment;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.a2021mobilecontent.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment3#newInstance} factory method to
+ * Use the {@link GraphFragment_2#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment3 extends Fragment {
+public class GraphFragment_2 extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class Fragment3 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Fragment3() {
+    public GraphFragment_2() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class Fragment3 extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment3.
+     * @return A new instance of fragment GraphFragment_2.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment3 newInstance(String param1, String param2) {
-        Fragment3 fragment = new Fragment3();
+    public static GraphFragment_2 newInstance(String param1, String param2) {
+        GraphFragment_2 fragment = new GraphFragment_2();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -57,8 +59,11 @@ public class Fragment3 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+
                              Bundle savedInstanceState) {
+        ViewGroup GraphFragment_2 = (ViewGroup)inflater.inflate(R.layout.fragment_graph_2,container,false);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_3, container, false);
+        return GraphFragment_2;
     }
 }
