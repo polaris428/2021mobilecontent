@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
-import com.example.a2021mobilecontent.activity.Usercaffeine;
+import com.example.a2021mobilecontent.data.Usercaffeine;
 import com.example.a2021mobilecontent.adaptr.UserAdapter;
 import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
 import com.example.a2021mobilecontent.activity.Caffeine_Popup;
@@ -121,11 +121,14 @@ public class Fragment1 extends Fragment {
         binding.reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 SharedPreferences sc = getContext().getSharedPreferences("Count", Context.MODE_PRIVATE);  // test 이름의 기본모드 설정
                 SharedPreferences.Editor editor= sc.edit();
                 editor.putInt("count",0);
                 editor.commit();
-                da.clear(id,1);
+
+                da.clear(id,1,value);
+
 
             }
         });

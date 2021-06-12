@@ -1,4 +1,4 @@
-package com.example.a2021mobilecontent.activity;
+package com.example.a2021mobilecontent.data;
 
 public class Usercaffeine {
     private  String Photo;

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.a2021mobilecontent.Caffeine;
+import com.example.a2021mobilecontent.data.Caffeine;
 import com.example.a2021mobilecontent.DataCaffeine;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.activity.MainActivity;

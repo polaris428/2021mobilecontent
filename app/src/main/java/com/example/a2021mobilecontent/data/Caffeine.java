@@ -1,4 +1,4 @@
-package com.example.a2021mobilecontent;
+package com.example.a2021mobilecontent.data;
 
 public class Caffeine {
   private int Amount1;

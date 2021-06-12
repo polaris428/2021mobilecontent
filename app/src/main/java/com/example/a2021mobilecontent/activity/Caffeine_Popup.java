@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a2021mobilecontent.Caffeine;
+import com.example.a2021mobilecontent.data.Caffeine;
 import com.example.a2021mobilecontent.adaptr.CustomAdapter;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.databinding.ActivityCaffeinePopupBinding;

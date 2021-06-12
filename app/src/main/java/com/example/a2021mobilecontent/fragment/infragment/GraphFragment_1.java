@@ -90,7 +90,6 @@ public class GraphFragment_1 extends Fragment {
         ct = container.getContext();
 
 
-
         List<Entry> entries = new ArrayList<>();
         ArrayList<Integer> arrlist=new ArrayList();
         ArrayList<Integer> daylist=new ArrayList();
@@ -137,12 +136,13 @@ public class GraphFragment_1 extends Fragment {
 
                     daylist.add(url);
 
-                    if(arrlist.size()==5&&daylist.size()==5){
+                    if(arrlist.size()==8&&daylist.size()==8){
 
                         for(int i : daylist)
                         {
                             count++;
-                            entries.add(new Entry(i,arrlist.get(count)));
+                            if(count>0) entries.add(new Entry(i,arrlist.get(count)));
+
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);

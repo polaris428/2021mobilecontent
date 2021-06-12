@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -16,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LodingActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
+    Database database=new Database();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,6 @@ public class LodingActivity extends AppCompatActivity {
         SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
         String id = sf.getString("email","");
         String pwe = sf.getString("pwe","");
-
         if(id!=""&&pwe!=""){
             firebaseAuth = firebaseAuth.getInstance();
             firebaseAuth.signInWithEmailAndPassword(id, pwe)
