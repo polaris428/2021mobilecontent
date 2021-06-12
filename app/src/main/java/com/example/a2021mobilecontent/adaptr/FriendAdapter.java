@@ -43,7 +43,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.CustomView
 
 
         holder.name.setText(arrayList.get(position).getName());
-
+        holder.c.setText(arrayList.get(position).getCaffeine()+"");
         Friend item = arrayList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,13 +88,13 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.CustomView
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        TextView amount;
+        TextView c;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.name=itemView.findViewById(R.id.name);
-
+            this.c=itemView.findViewById(R.id.c);
 
         }
 
