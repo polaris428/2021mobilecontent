@@ -19,7 +19,7 @@ import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.data.Usercaffeine;
 import com.example.a2021mobilecontent.adaptr.UserAdapter;
-import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
+import com.example.a2021mobilecontent.fragment.GraphFragment.GraphFragment_1;
 import com.example.a2021mobilecontent.activity.Caffeine_Popup;
 import com.example.a2021mobilecontent.databinding.Fragment1Binding;
 import com.google.firebase.database.DataSnapshot;

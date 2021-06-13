@@ -1,4 +1,4 @@
-package com.example.a2021mobilecontent.fragment.infragment;
+package com.example.a2021mobilecontent.fragment.GraphFragment;
 
 import android.content.Context;
 import android.graphics.Color;

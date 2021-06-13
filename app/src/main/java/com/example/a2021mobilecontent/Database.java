@@ -2,7 +2,6 @@ package com.example.a2021mobilecontent;
 
 import android.util.Log;
 
-import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
 import com.github.mikephil.charting.data.Entry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -91,7 +90,21 @@ public class Database {
         DatabaseReference dc = database.getReference("UserProfile").child("iou1056212").child("day").child("0");
         if(count==7){
             dc.setValue(1);
+            for(int i=1;i<6;i++){
+                String rank=i+"";
+                String rank1=i+1+"";
+                DatabaseReference a = database.getReference("UserProfile").child("iou1056212").child("day").child(rank);
+                DatabaseReference b = database.getReference("UserProfile").child("iou1056212").child("day").child(rank1);
+
+                
+
+
+
+            }
+
+
         }else {
+
             dc.setValue(++count);
         }
 

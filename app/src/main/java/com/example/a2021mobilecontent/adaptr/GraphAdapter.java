@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_1;
-import com.example.a2021mobilecontent.fragment.infragment.GraphFragment_2;
+import com.example.a2021mobilecontent.fragment.GraphFragment.GraphFragment_1;
+import com.example.a2021mobilecontent.fragment.GraphFragment.GraphFragment_2;
 
 import java.util.ArrayList;
 
