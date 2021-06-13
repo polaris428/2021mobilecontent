@@ -104,9 +104,18 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="horizontal" >
+                android:scrollbars="horizontal"
+                >
 
             </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="아직 섭취한 카폐인이 없습니다\n카페인을 추가시켜 주세요"
+                android:gravity="center"
+                android:textSize="25sp">
+            </TextView>
         </LinearLayout>
 
         <Button

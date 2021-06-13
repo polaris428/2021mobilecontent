@@ -73,11 +73,12 @@ public class FragmentSleep extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSleepBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
         binding.TimePicker1.setHour(0);
         binding.TimePicker1.setMinute(0);
         binding.TimePicker2.setHour(0);
         binding.TimePicker2.setMinute(0);
-        
+
         binding.TimePicker1.setOnTimeChangedListener(this::OnTimeChanged1);
         binding.TimePicker2.setOnTimeChangedListener(this::OnTimeChanged2);
         binding.btn.setOnClickListener(new View.OnClickListener() {

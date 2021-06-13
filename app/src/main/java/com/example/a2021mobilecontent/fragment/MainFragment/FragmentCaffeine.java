@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,18 +137,7 @@ public class FragmentCaffeine extends Fragment {
 
             }
         });
-        binding.test1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Caffeine.setValue(value+10);
-            }
-        });
-        binding.test2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Caffeine.setValue(value-10);
-            }
-        });
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -177,8 +167,21 @@ public class FragmentCaffeine extends Fragment {
                 Log.e("Fraglike", String.valueOf(databaseError.toException())); // 에러문 출력
             }
         });
+
+
+
         adapter = new UserAdapter(arrayList, getContext());
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
+        int a;
+        if(adapter==null){
+            a=1;
+        }else{
+            a=2;
+        }
+        Log.d("dadsfaf",a+"");
+
+        //if(a==0) recyclerView.setVisibility(View.VISIBLE);
+        //else recyclerView.setVisibility(View.GONE);
         Caffeine.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -189,7 +192,11 @@ public class FragmentCaffeine extends Fragment {
                 Log.d("TAF",g.day1+"");
                 binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
-                System.out.println(value);
+                if(value==0){
+                    binding.recyclerView.setVisibility(View.GONE);
+                }else {
+                    binding.recyclerView.setVisibility(View.VISIBLE);
+                }
 
             }
 

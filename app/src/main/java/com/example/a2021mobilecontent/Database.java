@@ -34,6 +34,9 @@ public class Database {
 
         DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
         databaseReference.removeValue();
+
+
+        Log.d("asdf",databaseReference+"");
         a=1;
     }
 

@@ -111,10 +111,7 @@ public class GraphFragment_1 extends Fragment {
                     arrlist.add(url);
 
 
-
                 }
-
-
 
             }
 
