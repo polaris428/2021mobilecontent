@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.a2021mobilecontent.fragment.Fragment1;
+import com.example.a2021mobilecontent.fragment.MainFragment.FragmentCaffeine;
 import com.example.a2021mobilecontent.fragment.Fragment2;
 import com.example.a2021mobilecontent.fragment.Fragment3;
 import com.example.a2021mobilecontent.fragment.Fragment4;
@@ -25,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager=getSupportFragmentManager();
-    private Fragment1 fragment1=new Fragment1();
+    private FragmentCaffeine fragment1=new FragmentCaffeine();
     private BottomNavigationView mBottomNV;
     ActivityMainBinding binding;
     FirebaseDatabase database = FirebaseDatabase.getInstance();

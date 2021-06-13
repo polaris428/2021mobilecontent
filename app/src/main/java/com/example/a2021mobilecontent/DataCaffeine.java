@@ -10,9 +10,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DataCaffeine {
 
-
-
-
     public  void add(String id,String img,String name,int amount,int count){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

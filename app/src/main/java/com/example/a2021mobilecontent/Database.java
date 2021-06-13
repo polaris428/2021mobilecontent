@@ -96,10 +96,6 @@ public class Database {
                 DatabaseReference a = database.getReference("UserProfile").child("iou1056212").child("day").child(rank);
                 DatabaseReference b = database.getReference("UserProfile").child("iou1056212").child("day").child(rank1);
 
-                
-
-
-
             }
 
 
