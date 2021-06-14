@@ -1,6 +1,7 @@
 package com.example.a2021mobilecontent.fragment.GraphFragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -92,11 +93,12 @@ public class GraphFragment_2 extends Fragment {
         ct = container.getContext();
 
         List<Entry> entries = new ArrayList<>();
-
+        SharedPreferences sf = getContext().getSharedPreferences("Login",getContext().MODE_PRIVATE);
+        String id = sf.getString("id","");
         ArrayList<Integer> daylist=new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference sleeptime = database.getReference("UserProfile").child("iou1056212").child("time");
-        DatabaseReference day = database.getReference("UserProfile").child("iou1056212").child("day");
+        DatabaseReference sleeptime = database.getReference("UserProfile").child(id).child("time");
+        DatabaseReference day = database.getReference("UserProfile").child(id).child("day");
         sleeptime.child("0").setValue(1);
 
         sleeptime.addValueEventListener(new ValueEventListener() {

@@ -1,5 +1,6 @@
 package com.example.a2021mobilecontent.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -76,6 +77,7 @@ public class Fragment4 extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    Database d=new Database();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,8 +91,9 @@ public class Fragment4 extends Fragment {
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         TextView textView=v.findViewById(R.id.name);
-        Database d=new Database();
-        d.nama("iou1056212",textView);
+        SharedPreferences sf = getContext().getSharedPreferences("Login",getContext().MODE_PRIVATE);
+        String id = sf.getString("id","");
+        d.nama(id,textView);
         databaseReference = database.getReference("UserProfile"); // DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
