@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager=getSupportFragmentManager();
@@ -65,28 +66,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getSupportFragmentManager().beginTransaction().add(R.id.bottomview,new Fragment1()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment1()).commit();
 
-
-        binding.bottomnavi.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.item_fragment1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment1()).commit();
-                        break;
-                    case R.id.item_fragment2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment2()).commit();
-                        break;
-                    case R.id.item_fragment3:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment3()).commit();
-                        break;
-                    case R.id.item_fragment4:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment4()).commit();
-                        break;
-                }
-                return true;
-            }
-        });
+        binding.bottomnavi.setItemSelected(R.id.item_fragment1,true);
+       binding.bottomnavi.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(int i) {
+               switch (i){
+                   case R.id.item_fragment1:
+                       getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment1()).commit();
+                       break;
+                   case R.id.item_fragment2:
+                       getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment2()).commit();
+                       break;
+                   case R.id.item_fragment3:
+                       getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment3()).commit();
+                       break;
+                   case R.id.item_fragment4:
+                       getSupportFragmentManager().beginTransaction().replace(R.id.bottomview,new Fragment4()).commit();
+                       break;
+               }
+           }
+       });
     }
 }

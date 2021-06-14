@@ -1,5 +1,6 @@
 package com.example.a2021mobilecontent.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,7 @@ public class Caffeine_Popup extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     ActivityCaffeinePopupBinding binding;
+    private boolean btn=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,21 @@ public class Caffeine_Popup extends AppCompatActivity {
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        binding.backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn==true){
+                    Intent intent = new Intent(Caffeine_Popup.this, MainActivity.class);
 
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+
+                }
+            }
+        });
 
 
     }

@@ -129,22 +129,8 @@
             >
 
         </Button>
-      <Button
-          android:id="@+id/test1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintLeft_toLeftOf="parent">
 
-      </Button>
-      <Button
-          android:id="@+id/test2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintRight_toRightOf="parent">
 
-      </Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

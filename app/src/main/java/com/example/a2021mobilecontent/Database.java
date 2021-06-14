@@ -1,7 +1,9 @@
 package com.example.a2021mobilecontent;
 
 import android.util.Log;
+import android.widget.TextView;
 
+import com.example.a2021mobilecontent.activity.LodingActivity;
 import com.github.mikephil.charting.data.Entry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,28 +25,47 @@ public class Database {
     SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
     String getday = sdf.format(date);
     int today=Integer.parseInt(getday);
-
-    public void clear(String id,int day,int caffeine){
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public void clear(String id,int day,int caffeine,int houre){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
         //if (day<today){
 
         Caffeine.setValue(0);
-        daycount(caffeine);
+        daycount(caffeine,id,houre);
 
         DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
         databaseReference.removeValue();
 
 
-        Log.d("asdf",databaseReference+"");
+
         a=1;
     }
 
+    public void nama(String id, TextView textView){
 
-    public  void daycount(int caffeine){
+        DatabaseReference name= database.getReference("UserProfile").child(id).child("name");
+        name.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String username = dataSnapshot.getValue(String.class);
+                textView.setText(username);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+    }
+    public  void daycount(int caffeine,String id,int houre){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference dc = database.getReference("UserProfile").child("iou1056212").child("day").child("0");
+        DatabaseReference dc = database.getReference("UserProfile").child(id).child("day").child("0");
 
             dc.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -55,7 +76,7 @@ public class Database {
                     mm = dataSnapshot.getValue(Integer.class);
                     if(a==1){
                         a=0;
-                        input(mm,caffeine);
+                        input(mm,caffeine,houre);
 
                     }
 
@@ -77,7 +98,7 @@ public class Database {
 
 
 
-    public void input(int count ,int caffeine){
+    public void input(int count ,int caffeine,int hour){
         String count1=count+"";
         Log.d("count",count1);
         long now = System.currentTimeMillis();
@@ -90,6 +111,8 @@ public class Database {
         day.setValue(today);
         DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr").child(count1);
         arr.setValue(caffeine);
+        DatabaseReference time = database.getReference("UserProfile").child("iou1056212").child("time").child(count1);
+        time.setValue(hour);
         DatabaseReference dc = database.getReference("UserProfile").child("iou1056212").child("day").child("0");
         if(count==7){
             dc.setValue(1);
@@ -107,5 +130,11 @@ public class Database {
             dc.setValue(++count);
         }
 
+
     }
+
+
+
+
+
 }

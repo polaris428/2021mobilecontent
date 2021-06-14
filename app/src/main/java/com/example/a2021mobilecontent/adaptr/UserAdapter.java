@@ -102,6 +102,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.CustomViewHold
             this.name=itemView.findViewById(R.id.name);
             this.amount=itemView.findViewById(R.id.amount);
 
+
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

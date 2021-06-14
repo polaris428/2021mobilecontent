@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,41 +82,36 @@ public class GraphFragment_2 extends Fragment {
     }
     private LineChart lineChart;
     Context ct;
+    public ArrayList<Integer> arrlist=new ArrayList();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup Grapfragment2 = (ViewGroup)inflater.inflate(R.layout.fragment_graph_2,container,false);
         ViewPager vp =Grapfragment2.findViewById(R.id.viewpager);
-        lineChart = (LineChart)Grapfragment2.findViewById(R.id.chart);
+        lineChart = Grapfragment2.findViewById(R.id.chart);
         ct = container.getContext();
 
         List<Entry> entries = new ArrayList<>();
-        ArrayList<Integer> arrlist=new ArrayList();
+
         ArrayList<Integer> daylist=new ArrayList();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr");
+        DatabaseReference sleeptime = database.getReference("UserProfile").child("iou1056212").child("time");
         DatabaseReference day = database.getReference("UserProfile").child("iou1056212").child("day");
+        sleeptime.child("0").setValue(1);
 
-
-        arr.addValueEventListener(new ValueEventListener() {
+        sleeptime.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                int count=-1;
-
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+            public void onDataChange( DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    int count = -1;
                     int url = ds.getValue(Integer.class);
 
                     arrlist.add(url);
-
                 }
-
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
 
             }
         });
@@ -121,18 +120,17 @@ public class GraphFragment_2 extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                int count=-1;
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    int count = -1;
                     int url = ds.getValue(Integer.class);
 
                     daylist.add(url);
+                    Log.d("adf",arrlist.size()+"asd"+daylist.size()+"");
+                    if (arrlist.size() == 8 && daylist.size() == 8) {
 
-                    if(arrlist.size()==8&&daylist.size()==8){
-
-                        for(int i : daylist)
-                        {
+                        for (int i : daylist) {
                             count++;
-                            if(count>0) entries.add(new Entry(i,arrlist.get(count)));
+                            if (count > 0) entries.add(new Entry(i, arrlist.get(count)));
 
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
                             lineDataSet.setLineWidth(2);
@@ -171,7 +169,7 @@ public class GraphFragment_2 extends Fragment {
                             lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
                             lineChart.invalidate();
 
-                            MyMarkerView marker = new MyMarkerView(ct,R.layout.activity_my_marker_view);
+                            MyMarkerView marker = new MyMarkerView(ct, R.layout.activity_my_marker_view);
                             marker.setChartView(lineChart);
                             lineChart.setMarker(marker);
 
@@ -180,11 +178,12 @@ public class GraphFragment_2 extends Fragment {
                     }
 
                 }
-
-
             }
 
-            @Override
+
+
+
+        @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
 

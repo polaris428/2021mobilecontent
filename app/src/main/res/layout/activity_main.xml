@@ -33,13 +33,11 @@
 
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottomnavi"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu">
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        android:layout_height="70dp"
+        app:cnb_menuResource="@menu/menu"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

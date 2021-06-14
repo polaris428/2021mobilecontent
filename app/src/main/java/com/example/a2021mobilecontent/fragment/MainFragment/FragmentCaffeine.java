@@ -132,7 +132,9 @@ public class FragmentCaffeine extends Fragment {
                 editor.putInt("count",0);
                 editor.commit();
 
-                da.clear(id,1,value);
+                SharedPreferences t =getContext(). getSharedPreferences("time",Context.MODE_PRIVATE);
+                int time=t.getInt("time",0);
+                da.clear(id,1,value,time);
 
 
             }

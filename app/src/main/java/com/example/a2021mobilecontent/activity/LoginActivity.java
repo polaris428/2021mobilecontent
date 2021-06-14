@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("email",email);
                                     // key,value 형식으로 저장
                                     editor.commit();
+
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.putExtra("id",email);
                                     startActivity(intent);

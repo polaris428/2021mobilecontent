@@ -96,8 +96,25 @@ public class GraphFragment_1 extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr");
         DatabaseReference day = database.getReference("UserProfile").child("iou1056212").child("day");
+        DatabaseReference sleeptime = database.getReference("UserProfile").child("iou1056212").child("time");
 
+        sleeptime.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    int count = -1;
+                    int url = ds.getValue(Integer.class);
 
+                    GraphFragment_2 graphFragment_2=new GraphFragment_2();
+                    graphFragment_2.arrlist.add(url);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
         arr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

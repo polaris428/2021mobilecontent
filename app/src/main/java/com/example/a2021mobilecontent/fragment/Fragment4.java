@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.adaptr.CustomAdapter;
 import com.example.a2021mobilecontent.adaptr.FriendAdapter;
@@ -86,6 +88,9 @@ public class Fragment4 extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+        TextView textView=v.findViewById(R.id.name);
+        Database d=new Database();
+        d.nama("iou1056212",textView);
         databaseReference = database.getReference("UserProfile"); // DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

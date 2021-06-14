@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sleeping caffeni"
+        android:text="Sleeping caffeine"
         android:textSize="30dp"
         android:textColor="#000000"
         android:fontFamily="@font/robotoregular"

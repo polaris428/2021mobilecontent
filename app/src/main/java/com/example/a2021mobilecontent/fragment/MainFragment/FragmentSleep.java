@@ -1,5 +1,7 @@
 package com.example.a2021mobilecontent.fragment.MainFragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -81,10 +83,12 @@ public class FragmentSleep extends Fragment {
 
         binding.TimePicker1.setOnTimeChangedListener(this::OnTimeChanged1);
         binding.TimePicker2.setOnTimeChangedListener(this::OnTimeChanged2);
+
         binding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 time(timesleeph,timesleepm,wakeuptimeh,wakeuptimem);
+
             }
         });
         return view;
@@ -116,6 +120,12 @@ public class FragmentSleep extends Fragment {
             h3=h3*-1;
         }
         binding.tv.setText(h3+"시간: "+m3+"분");
+        SharedPreferences sharedPreferences= getContext().getSharedPreferences("time", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
+        SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+        editor.putInt("time",h3);
+
+        // key,value 형식으로 저장
+        editor.commit();
     }
 
 }
