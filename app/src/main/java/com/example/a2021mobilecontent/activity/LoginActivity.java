@@ -36,18 +36,15 @@ public class LoginActivity extends AppCompatActivity {
         String pwe = sf.getString("pwe","");
         binding.idinput.setText(id);
         binding.pweinput.setText(pwe);
-        String email = binding.idinput.getText().toString().trim();
 
-
-
-
+        
 
         firebaseAuth = firebaseAuth.getInstance();//firebaseAuth의 인스턴스를 가져옴
         binding.loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = binding.idinput.getText().toString().trim();
                 if(email.contains("@")==true){
-                    String email = binding.idinput.getText().toString().trim();
                     int idx = email.indexOf("@");
                     String mail1 = email.substring(0, idx);
                     String pwd = binding.pweinput.getText().toString().trim();
