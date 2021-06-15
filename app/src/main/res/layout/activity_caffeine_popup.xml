@@ -78,22 +78,22 @@
                 >
             </ImageView>
             <ImageView
-                android:id="@+id/Angelinus"
+                android:id="@+id/CoffeeBin"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:backgroundTint="#ffffff"
-                android:src="@drawable/angelinus"
+                android:src="@drawable/coffeebin"
                 android:layout_margin="10dp"
                 android:onClick="Kinds">
             </ImageView>
-            <ImageButton
-
+            <ImageView
+                android:id="@+id/Twosomeplace"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:backgroundTint="#ffffff"
+                android:background="@drawable/twosomeplaee"
                 android:layout_margin="10dp"
+                android:onClick="Kinds"
               >
-            </ImageButton>
+            </ImageView>
         </LinearLayout>
 
     </HorizontalScrollView>

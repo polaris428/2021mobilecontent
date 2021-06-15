@@ -36,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         String pwe = sf.getString("pwe","");
         binding.idinput.setText(id);
         binding.pweinput.setText(pwe);
+        String email = binding.idinput.getText().toString().trim();
+
+
 
 
 
@@ -43,36 +46,40 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(email.contains("@")==true){
+                    String email = binding.idinput.getText().toString().trim();
+                    int idx = email.indexOf("@");
+                    String mail1 = email.substring(0, idx);
+                    String pwd = binding.pweinput.getText().toString().trim();
 
-                String email = binding.idinput.getText().toString().trim();
-                int idx = email.indexOf("@");
-                String mail1 = email.substring(0, idx);
-                String pwd = binding.pweinput.getText().toString().trim();
+                    firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {//성공했을때
+                                        SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
+                                        SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                                        editor.putString("id",mail1);
+                                        editor.putString("pwe",pwd);
+                                        editor.putString("email",email);
+                                        // key,value 형식으로 저장
+                                        editor.commit();
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-                firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {//성공했을때
-                                    SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
-                                    SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                                    editor.putString("id",mail1);
-                                    editor.putString("pwe",pwd);
-                                    editor.putString("email",email);
-                                    // key,value 형식으로 저장
-                                    editor.commit();
-
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("id",email);
-                                    startActivity(intent);
-                                    System.out.println(mail1);
-                                } else {//실패했을때
-                                    Toast.makeText(LoginActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-            }
+                }else {
+                    Toast.makeText(LoginActivity.this, "이메일 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show();
+                }
+                }
+
+
         });
 
         binding.joinbtn.setOnClickListener(new View.OnClickListener() {

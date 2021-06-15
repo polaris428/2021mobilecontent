@@ -134,6 +134,8 @@ public class FragmentCaffeine extends Fragment {
 
                 SharedPreferences t =getContext(). getSharedPreferences("time",Context.MODE_PRIVATE);
                 int time=t.getInt("time",0);
+
+
                 da.clear(id,1,value,time);
 
 
@@ -191,7 +193,6 @@ public class FragmentCaffeine extends Fragment {
                 // whenever data at this location is updated.
                 value = dataSnapshot.getValue(Integer.class);
                 GraphFragment_1 g=new GraphFragment_1();
-                Log.d("TAF",g.day1+"");
                 binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
                 if(value==0){

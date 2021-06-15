@@ -128,7 +128,7 @@ public class GraphFragment_2 extends Fragment {
 
                     daylist.add(url);
                     Log.d("adf",arrlist.size()+"asd"+daylist.size()+"");
-                    if (arrlist.size() == 8 && daylist.size() == 8) {
+                    if (arrlist.size() ==daylist.size() ) {
 
                         for (int i : daylist) {
                             count++;

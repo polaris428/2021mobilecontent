@@ -54,7 +54,6 @@ public class Caffeine_Popup extends AppCompatActivity {
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-
                     startActivity(intent);
                     overridePendingTransition(0, 0);
 
@@ -83,12 +82,12 @@ public class Caffeine_Popup extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // 디비를 가져오던중 에러 발생 시
-                Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+
             }
         });
         adapter = new CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
-        Log.d("adsf","2");
+
     }
     public void Kinds(View view){
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
@@ -98,7 +97,6 @@ public class Caffeine_Popup extends AppCompatActivity {
             case R.id.Can:
                 databaseReference = database.getReference("Caffeine");
                 database();
-                Log.d("adsf","1");
                 break;
             case R.id.Starbucks:
                 databaseReference = database.getReference("Starbucks");
@@ -108,17 +106,31 @@ public class Caffeine_Popup extends AppCompatActivity {
                 databaseReference = database.getReference("EDIYA");
                 database();
                 break;
-            case R.id.Angelinus:
+            case R.id.CoffeeBin:
                 databaseReference = database.getReference("CoffeeBin");
                 database();
                 break;
-
-
-
+            case R.id.Twosomeplace:
+                databaseReference = database.getReference("TWOSOME PLACE");
+                database();
+                break;
 
         }
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Caffeine_Popup.this, MainActivity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        
+
+    }
+
 
 }
 

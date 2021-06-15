@@ -1,5 +1,7 @@
 package com.example.a2021mobilecontent;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +39,6 @@ public class Database {
 
         DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
         databaseReference.removeValue();
-
 
 
         a=1;
@@ -76,7 +78,7 @@ public class Database {
                     mm = dataSnapshot.getValue(Integer.class);
                     if(a==1){
                         a=0;
-                        input(mm,caffeine,houre);
+                        input(id,mm,caffeine,houre);
 
                     }
 
@@ -98,31 +100,24 @@ public class Database {
 
 
 
-    public void input(int count ,int caffeine,int hour){
+    public void input(String id,int count ,int caffeine,int hour){
         String count1=count+"";
         Log.d("count",count1);
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd");
-        String getday = sdf.format(date);
+        SimpleDateFormat day = new SimpleDateFormat("dd");
+        String getday = day.format(date);
         int today=Integer.parseInt(getday);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference day = database.getReference("UserProfile").child("iou1056212").child("day").child(count1);
-        day.setValue(today);
-        DatabaseReference arr = database.getReference("UserProfile").child("iou1056212").child("arr").child(count1);
+        DatabaseReference days = database.getReference("UserProfile").child(id).child("day").child(count1);
+        days.setValue(today);
+        DatabaseReference arr = database.getReference("UserProfile").child(id).child("arr").child(count1);
         arr.setValue(caffeine);
-        DatabaseReference time = database.getReference("UserProfile").child("iou1056212").child("time").child(count1);
+        DatabaseReference time = database.getReference("UserProfile").child(id).child("time").child(count1);
         time.setValue(hour);
-        DatabaseReference dc = database.getReference("UserProfile").child("iou1056212").child("day").child("0");
+        DatabaseReference dc = database.getReference("UserProfile").child(id).child("day").child("0");
         if(count==7){
             dc.setValue(1);
-            for(int i=1;i<6;i++){
-                String rank=i+"";
-                String rank1=i+1+"";
-                DatabaseReference a = database.getReference("UserProfile").child("iou1056212").child("day").child(rank);
-                DatabaseReference b = database.getReference("UserProfile").child("iou1056212").child("day").child(rank1);
-
-            }
 
 
         }else {
@@ -133,6 +128,19 @@ public class Database {
 
     }
 
+    public void  inputuser(String id,String name){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("UserProfile").child(id).child("id").setValue(id);
+        databaseReference.child("UserProfile").child(id).child("name").setValue(name);
+        databaseReference.child("UserProfile").child(id).child("Caffeine").setValue(0);
+        ArrayList<Integer> num = new ArrayList<Integer>();
+        for (int i=0;i<8;i++){
+            num.add(0);
+        }
+        databaseReference.child("UserProfile").child(id).child("day").setValue(num);
+        databaseReference.child("UserProfile").child(id).child("day").child("0").setValue(1);
+    }
 
 
 

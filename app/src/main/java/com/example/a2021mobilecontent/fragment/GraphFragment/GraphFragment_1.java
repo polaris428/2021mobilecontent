@@ -153,7 +153,7 @@ public class GraphFragment_1 extends Fragment {
 
                     daylist.add(url);
 
-                    if(arrlist.size()==8&&daylist.size()==8){
+                    if(arrlist.size()==daylist.size()){
 
                         for(int i : daylist)
                         {

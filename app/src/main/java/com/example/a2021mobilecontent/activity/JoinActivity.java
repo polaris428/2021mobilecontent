@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
 import com.example.a2021mobilecontent.databinding.ActivityJoinBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +24,7 @@ import java.util.Date;
 public class JoinActivity extends AppCompatActivity {
 
     ActivityJoinBinding binding;
-    String mail1;
+    String id;
     FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -40,46 +41,36 @@ public class JoinActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
 
-        firebaseAuth = FirebaseAuth.getInstance();
 
         String name=binding.nameinput.getText().toString();
 
-
+        Database database=new Database();
         binding.joinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String email = binding.idinput.getText().toString().trim();
                 final String pwe = binding.pawinput.getText().toString().trim();
                 //final String name =binding.nameinput.getText().toString().trim();
-                int idx = email.indexOf("@");
 
-                mail1 = email.substring(0, idx);
-
-                SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
-                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                editor.putString("email",email);
-                editor.putString("id",mail1);
-                editor.putString("pwe",pwe);
-                editor.commit();
-
-                databaseReference.child("UserProfile").child(mail1).child("id").setValue(mail1);
-                databaseReference.child("UserProfile").child(mail1).child("name").setValue(name);
-                //databaseReference.child("UserProfile").child(mail1).child("mouney").setValue(50000);
-                databaseReference.child("UserProfile").child(mail1).child("Caffeine").setValue(0);
-                //final String name = name_join.getText().toString().trim();
-                //공백인 부분을 제거하고 보여주는 trim();
                 firebaseAuth.createUserWithEmailAndPassword(email, pwe)
                         .addOnCompleteListener(JoinActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 if (task.isSuccessful()) {
+                                    int idx = email.indexOf("@");
+                                    id = email.substring(0, idx);
+                                    SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
+                                    SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                                    editor.putString("email",email);
+                                    editor.putString("id",id);
+                                    editor.putString("pwe",pwe);
+                                    editor.commit();
+                                    database.inputuser(id,name);
                                     Date date = new Date(System.currentTimeMillis()); //날짜
                                     Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                     startActivity(intent);
                                     finish();
 

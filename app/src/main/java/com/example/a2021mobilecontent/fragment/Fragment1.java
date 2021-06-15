@@ -63,13 +63,13 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup fragment5 = (ViewGroup)inflater.inflate(R.layout.fragment_1,container,false);
-        ViewPager vp =fragment5.findViewById(R.id.viewpager);
+        ViewGroup fragment = (ViewGroup)inflater.inflate(R.layout.fragment_1,container,false);
+        ViewPager vp =fragment.findViewById(R.id.viewpager);
         MainAdapter adapter=new MainAdapter(getFragmentManager());
         vp.setAdapter(adapter);
 
-        TabLayout tab=fragment5.findViewById(R.id.tab);
+        TabLayout tab=fragment.findViewById(R.id.tab);
         tab.setupWithViewPager(vp);
-        return fragment5;
+        return fragment;
     }
 }
