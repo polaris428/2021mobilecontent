@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,112 +10,148 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:background="@drawable/back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:text="Sleeping caffenie"
+            android:textColor="#000000"
+            android:textSize="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <FrameLayout
+            android:id="@+id/FrameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text">
+
+            <Button
+                android:id="@+id/popbtn"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:backgroundTint="#00FFFFFF"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text">
+
+            </Button>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:src="@drawable/component_8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+            <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
+                android:id="@+id/circularFillableLoaders"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignBottom="@+id/popbtn"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/circle"
+                app:cfl_border="false"
+                app:cfl_border_width="12dp"
+                app:cfl_progress="80"
+                app:cfl_wave_amplitude="0.06"
+                app:cfl_wave_color="#DF943D"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </FrameLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
-            android:layout_marginTop="30dp">
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FrameLayout">
+
+            <TextView
+                android:id="@+id/intake"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp">
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:hint=""
+                android:textColor="#000000"
+                android:textSize="30sp">
 
-                <Button
-                    android:id="@+id/popbtn"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:backgroundTint="#00FFFFFF"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    style="?android:attr/borderlessButtonStyle">
+            </TextView>
 
-                </Button>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:src="@drawable/component_8">
-
-                </ImageView>
-
-                <com.mikhaellopez.circularfillableloaders.CircularFillableLoaders
-                    android:id="@+id/circularFillableLoaders"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_alignBottom="@+id/popbtn"
-                    android:src="@drawable/circle"
-                    app:cfl_border="false"
-                    app:cfl_border_width="12dp"
-                    app:cfl_progress="80"
-                    app:cfl_wave_amplitude="0.06"
-                    app:cfl_wave_color="#DF943D"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/msg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:text="소량의 커피는간암의 예방에 도움이 됩니다"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="15sp">
 
-                android:layout_centerInParent="true"
-                android:layout_alignParentTop="true">
-                <TextView
-                    android:id="@+id/intake"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="30sp"
-                    android:gravity="center"
-                    android:hint="dasfdd"
-                    android:textColor="#000000"
-                    android:layout_marginBottom="10dp">
-
-                </TextView>
-
-                <TextView
-                    android:id="@+id/msg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="#000000"
-                    android:layout_gravity="center"
-                    android:textAlignment="center"
-                    android:text="소량의 커피는간암의 예방에 도움이 됩니다">
-
-                </TextView>
-
-            </LinearLayout>
-
-
+            </TextView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:scrollbars="horizontal"
-                >
+                android:layout_marginTop="50dp"
+                android:layout_marginHorizontal="30dp">
 
             </androidx.recyclerview.widget.RecyclerView>
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="아직 섭취한 카폐인이 없습니다\n카페인을 추가시켜 주세요"
                 android:gravity="center"
-                android:textSize="25sp">
+                android:text="아직 섭취한 카폐인이 없습니다\n카페인을 추가시켜 주세요"
+                android:textSize="25sp"
+                android:visibility="gone">
+
             </TextView>
+
         </LinearLayout>
+
+
+
+
+
+
 
         <Button
             android:id="@+id/reset"
@@ -125,11 +160,9 @@
             android:text="초기화"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            >
+            app:layout_constraintRight_toRightOf="parent">
 
         </Button>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

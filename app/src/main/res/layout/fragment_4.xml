@@ -5,6 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Fragment4"
     android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backfriend">
+
+    </ImageView>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

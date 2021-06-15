@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.idinput.setText(id);
         binding.pweinput.setText(pwe);
 
-        
+
 
         firebaseAuth = firebaseAuth.getInstance();//firebaseAuth의 인스턴스를 가져옴
         binding.loginbtn.setOnClickListener(new View.OnClickListener() {

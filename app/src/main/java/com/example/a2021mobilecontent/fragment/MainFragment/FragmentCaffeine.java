@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
+import com.example.a2021mobilecontent.adaptr.RecyclerDecoration;
 import com.example.a2021mobilecontent.data.Usercaffeine;
 import com.example.a2021mobilecontent.adaptr.UserAdapter;
 import com.example.a2021mobilecontent.databinding.FragmentCaffeineBinding;
@@ -150,7 +151,6 @@ public class FragmentCaffeine extends Fragment {
 
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
-
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed"); // DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -163,6 +163,7 @@ public class FragmentCaffeine extends Fragment {
                     arrayList.add(usercaffeine); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                 adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침해야 반영이 됨
+
             }
 
             @Override
@@ -176,14 +177,9 @@ public class FragmentCaffeine extends Fragment {
 
         adapter = new UserAdapter(arrayList, getContext());
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
-        int a;
-        if(adapter==null){
-            a=1;
-        }else{
-            a=2;
-        }
-        Log.d("dadsfaf",a+"");
 
+        RecyclerDecoration spaceDecoration = new RecyclerDecoration(30);
+        recyclerView.addItemDecoration(spaceDecoration);
         //if(a==0) recyclerView.setVisibility(View.VISIBLE);
         //else recyclerView.setVisibility(View.GONE);
         Caffeine.addValueEventListener(new ValueEventListener() {
