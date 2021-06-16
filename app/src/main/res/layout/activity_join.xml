@@ -1,62 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
 
     tools:context=".activity.JoinActivity">
 
-
-    <EditText
-        android:id="@+id/idinput"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="id"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
 
-        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logo">
 
-    </EditText>
-    <EditText
-        android:id="@+id/pawinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="paw"
-        app:layout_constraintTop_toBottomOf="@+id/idinput"
-        >
+        </ImageView>
 
-    </EditText>
-    <EditText
-        android:id="@+id/nameinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="name"
-        app:layout_constraintTop_toBottomOf="@+id/pawinput"
-        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sleeping caffenie "
+            android:layout_marginLeft="10dp">
 
-    </EditText>
+        </TextView>
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/ageinput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="age"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@id/nameinput">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디"
+            android:textSize="15sp">
 
-    </EditText>
+        </TextView>
+        <EditText
+            android:id="@+id/idinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="id"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
 
-    <Button
-        android:id="@+id/joinbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="회원 가입"
-        app:layout_constraintTop_toBottomOf="@+id/ageinput">
+            >
 
-    </Button>
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/pawinput1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="paw"
+            android:layout_marginTop="10dp">
+
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 확인"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/pawinput2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="paw"
+            android:inputType="number"
+            android:layout_marginTop="10dp">
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp">
+
+        </TextView>
+        <EditText
+            android:id="@+id/nameinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="name"
+            android:layout_marginTop="10dp">
+
+        </EditText>
 
 
+        <Button
+            android:id="@+id/joinbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원 가입"
+            android:background="@drawable/rounded_btn"
+            android:layout_marginTop="50dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </Button>
+
+    </LinearLayout>
+
+</LinearLayout>

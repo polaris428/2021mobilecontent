@@ -51,7 +51,7 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String email = binding.idinput.getText().toString().trim();
-                final String pwe = binding.pawinput.getText().toString().trim();
+                final String pwe = binding.pawinput1.getText().toString().trim();
                 //final String name =binding.nameinput.getText().toString().trim();
 
                 firebaseAuth.createUserWithEmailAndPassword(email, pwe)

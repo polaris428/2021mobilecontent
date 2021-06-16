@@ -46,14 +46,15 @@
 
             <Button
                 android:id="@+id/popbtn"
-                style="?android:attr/borderlessButtonStyle"
+
                 android:layout_width="180dp"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
                 android:backgroundTint="#00FFFFFF"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text">
+                app:layout_constraintTop_toBottomOf="@+id/text"
+                style="?android:attr/borderlessButtonStyle">
 
             </Button>
 
@@ -146,24 +147,6 @@
             </TextView>
 
         </LinearLayout>
-
-
-
-
-
-
-
-        <Button
-            android:id="@+id/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="초기화"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
-
-        </Button>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

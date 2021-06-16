@@ -163,9 +163,9 @@ public class GraphFragment_1 extends Fragment {
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
-                            lineDataSet.setCircleColor(Color.parseColor("#000000"));
+                            lineDataSet.setCircleColor(Color.parseColor("#ff7f00"));
                             lineDataSet.setCircleColorHole(Color.BLUE);
-                            lineDataSet.setColor(Color.parseColor("#000000"));
+                            lineDataSet.setColor(Color.parseColor("#ff7f00"));
                             lineDataSet.setDrawCircleHole(true);
                             lineDataSet.setDrawCircles(true);
                             lineDataSet.setDrawHorizontalHighlightIndicator(false);
