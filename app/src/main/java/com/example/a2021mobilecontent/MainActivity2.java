@@ -31,7 +31,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         jsonView = findViewById(R.id.jsonObj);
-        new JSONTask().execute("http://"+ip2+".ngrok.io/");
+        new JSONTask().execute("/http://\"+ip2+\".ngrok.io");
     }
 
     public class JSONTask extends AsyncTask<String,String,String> {

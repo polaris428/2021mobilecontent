@@ -124,24 +124,7 @@ public class FragmentCaffeine extends Fragment {
         
         });
         Database da=new Database();
-        binding.reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                SharedPreferences sc = getContext().getSharedPreferences("Count", Context.MODE_PRIVATE);  // test 이름의 기본모드 설정
-                SharedPreferences.Editor editor= sc.edit();
-                editor.putInt("count",0);
-                editor.commit();
-
-                SharedPreferences t =getContext(). getSharedPreferences("time",Context.MODE_PRIVATE);
-                int time=t.getInt("time",0);
-
-
-                da.clear(id,1,value,time);
-
-
-            }
-        });
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화

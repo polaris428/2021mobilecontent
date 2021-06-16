@@ -67,7 +67,6 @@ public class Fragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         ViewGroup fragment2 = (ViewGroup)inflater.inflate(R.layout.fragment_2,container,false);
         ViewPager vp =fragment2.findViewById(R.id.viewpager);
         GraphAdapter adapter=new GraphAdapter(getFragmentManager());

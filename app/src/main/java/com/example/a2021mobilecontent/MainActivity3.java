@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -111,7 +112,7 @@ public class MainActivity3 extends AppCompatActivity {
     private void initRetrofitClient() {
         OkHttpClient client = new OkHttpClient.Builder().build();
 
-        apiService = new Retrofit.Builder().baseUrl("http://"+ip+".ngrok.io/").client(client).build().create(ApiService.class);
+        apiService = new Retrofit.Builder().baseUrl("http://8148d3bd05d0.ngrok.io/").client(client).build().create(ApiService.class);
     }
 
 
@@ -329,7 +330,10 @@ public class MainActivity3 extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    Toast.makeText(getApplicationContext(), response.code() + " ", Toast.LENGTH_SHORT).show();
+
+
+
+
                 }
 
                 @Override
