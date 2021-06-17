@@ -121,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="30dp"
                 android:text="소량의 커피는간암의 예방에 도움이 됩니다"
                 android:textAlignment="center"
                 android:textColor="#000000"

@@ -134,7 +134,7 @@ public class GraphFragment_2 extends Fragment {
                             count++;
                             if (count > 0) entries.add(new Entry(i, arrlist.get(count)));
 
-                            LineDataSet lineDataSet = new LineDataSet(entries, "카페인 마신량");
+                            LineDataSet lineDataSet = new LineDataSet(entries, "잠잔시간");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
                             lineDataSet.setCircleColor(Color.parseColor("#000000"));

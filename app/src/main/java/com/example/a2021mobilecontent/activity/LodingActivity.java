@@ -25,8 +25,10 @@ import java.util.ArrayList;
 
 public class LodingActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
-    Database database=new Database();
-    int a;
+    Database database = new Database();
+    boolean day;
+    int yesterday;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +38,9 @@ public class LodingActivity extends AppCompatActivity {
         String id = sf.getString("email","");
         String pwe = sf.getString("pwe","");
 
-
-
+        yesterday=database.getday(LodingActivity.this);
+        day=database.nextday(yesterday);
+  
         if(id!=""&&pwe!=""){
             firebaseAuth = firebaseAuth.getInstance();
             firebaseAuth.signInWithEmailAndPassword(id, pwe)
@@ -49,11 +52,9 @@ public class LodingActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
 
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                                Log.d("a",a+"");
                                 startActivity(intent);
 
-                            } else {//실패했을때
+                            } else {
                                 Toast.makeText(LodingActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -72,4 +73,7 @@ public class LodingActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }

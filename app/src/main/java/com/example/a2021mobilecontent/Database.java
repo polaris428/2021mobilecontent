@@ -22,27 +22,24 @@ import java.util.List;
 public class Database {
     int mm;
     int a;
-    List<Entry> entries = new ArrayList<>();
-    long now = System.currentTimeMillis();
-    Date date = new Date(now);
-    SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
-    String getday = sdf.format(date);
-    int today=Integer.parseInt(getday);
+
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     public void clear(String id,int day,int caffeine,int houre){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
-        //if (day<today){
 
-        Caffeine.setValue(0);
-        daycount(caffeine,id,houre);
-
-        DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
-        databaseReference.removeValue();
+            Caffeine.setValue(0);
+            daycount(caffeine, id, houre);
+            DatabaseReference databaseReference = database.getReference("UserProfile").child(id).child("DrinkConsumed");
+            databaseReference.removeValue();
 
 
-        a=1;
-    }
+            a = 1;
+        }
+
+
+
 
     public void nama(String id, TextView textView){
 
@@ -84,7 +81,6 @@ public class Database {
 
 
 
-
                 }
 
                 @Override
@@ -116,6 +112,8 @@ public class Database {
         DatabaseReference time = database.getReference("UserProfile").child(id).child("time").child(count1);
         time.setValue(hour);
         DatabaseReference dc = database.getReference("UserProfile").child(id).child("day").child("0");
+
+
         if(count==7){
             dc.setValue(1);
 
@@ -139,10 +137,75 @@ public class Database {
             num.add(0);
         }
         databaseReference.child("UserProfile").child(id).child("day").setValue(num);
+        databaseReference.child("UserProfile").child(id).child("arr").setValue(num);
+        databaseReference.child("UserProfile").child(id).child("time").setValue(num);
         databaseReference.child("UserProfile").child(id).child("day").child("0").setValue(1);
+
     }
 
 
+    public  void login(Context context ,String email,String id,String pwe){
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Login",context.MODE_PRIVATE);    // test 이름의 기본모드 설정
+        SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+        editor.putString("id",id);
+        editor.putString("pwe",pwe);
+        editor.putString("email",email);
+        editor.commit();
 
+
+    }
+
+    public void saveday(Context context){
+        //날짜 저장하는 함수
+        List<Entry> entries = new ArrayList<>();
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        String getday = sdf.format(date);
+        int today=Integer.parseInt(getday);
+        SharedPreferences sharedPreferences= context.getSharedPreferences("Day",context.MODE_PRIVATE);    // test 이름의 기본모드 설정
+        SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+        editor.putInt("id",today);
+        editor.commit();
+
+    }
+
+    public int getday(Context context){
+
+        //저장된 날짜를 가져오는 함수
+        SharedPreferences sf = context.getSharedPreferences("Day",context.MODE_PRIVATE);
+        int getday = sf.getInt("day",0);
+
+
+        return getday;
+
+
+    }
+    public int today(){
+        //오늘 날짜 구하는 함수
+        List<Entry> entries = new ArrayList<>();
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        String getday = sdf.format(date);
+        int today=Integer.parseInt(getday);
+
+        return  today;
+
+    }
+    public boolean nextday(int day){
+
+        //int day=전날
+
+        int today=today();
+        if(today>=day){
+            return  true;
+        }else {
+            return  false;
+        }
+
+
+
+    }
 
 }

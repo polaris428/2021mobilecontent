@@ -3,6 +3,7 @@ package com.example.a2021mobilecontent.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class JoinActivity extends AppCompatActivity {
     ActivityJoinBinding binding;
     String id;
     FirebaseAuth firebaseAuth;
+    Database database=new Database();
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private String TAG;
@@ -61,14 +63,12 @@ public class JoinActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     int idx = email.indexOf("@");
                                     id = email.substring(0, idx);
-                                    SharedPreferences sharedPreferences= getSharedPreferences("Login", MODE_PRIVATE);    // test 이름의 기본모드 설정
-                                    SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-                                    editor.putString("email",email);
-                                    editor.putString("id",id);
-                                    editor.putString("pwe",pwe);
-                                    editor.commit();
+
                                     database.inputuser(id,name);
-                                    Date date = new Date(System.currentTimeMillis()); //날짜
+                                    database.login(JoinActivity.this,email,id,pwe);
+                                    database.saveday(JoinActivity.this);
+
+
                                     Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                     startActivity(intent);

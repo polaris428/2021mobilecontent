@@ -51,6 +51,7 @@ public class FragmentCaffeine extends Fragment {
     public  class sa{
         public  int value;
     }
+
     public  int value;
     public  String name;
     // TODO: Rename parameter arguments, choose names that match
@@ -98,19 +99,31 @@ public class FragmentCaffeine extends Fragment {
         int randomNum = random.nextInt(max - min + 1) + min;
         return  randomNum;
     }
+    Database da=new Database();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
 
         binding = FragmentCaffeineBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+
         SharedPreferences sf = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         String id = sf.getString("id","");
-        DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
-        int randomNum=random(10,0);
+        SharedPreferences days = this.getActivity().getSharedPreferences("DAY", Context.MODE_PRIVATE);
+        int day=days.getInt("day",1);
+        SharedPreferences times= getContext().getSharedPreferences("time", Context.MODE_PRIVATE);
+        int time=times.getInt("times",0);
 
+        //int newday=da.clear(id,day,value,time);
+        SharedPreferences sharedPreferences= getContext().getSharedPreferences("DAY", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
+        SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+        //editor.putInt("day",newday);
+
+
+
+        DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
+        int randomNum =random(10,0);
 
         binding.circularFillableLoaders.setProgress(100-value);
         binding.msg.setText(getString(R.string.c+randomNum));

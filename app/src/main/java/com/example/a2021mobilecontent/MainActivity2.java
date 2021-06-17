@@ -40,6 +40,10 @@ public class MainActivity2 extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             JSONObject jsonObject = new JSONObject();
 
+
+
+
+            
             try {
                 jsonObject.accumulate("user_id", "androidTest");
 
