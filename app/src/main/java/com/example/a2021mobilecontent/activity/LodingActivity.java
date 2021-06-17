@@ -27,6 +27,7 @@ public class LodingActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Database database = new Database();
     boolean day;
+    int  today;
     int yesterday;
 
     @Override
@@ -35,20 +36,28 @@ public class LodingActivity extends AppCompatActivity {
         setContentView(R.layout.loding_activity);
 
         SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
-        String id = sf.getString("email","");
+        String email = sf.getString("email","");
         String pwe = sf.getString("pwe","");
-
-        yesterday=database.getday(LodingActivity.this);
-        day=database.nextday(yesterday);
-  
-        if(id!=""&&pwe!=""){
+        String id=sf.getString("id","");
+        SharedPreferences sellp = getSharedPreferences("time",MODE_PRIVATE);
+        int  ss = sellp.getInt("time",0);
+        if(email!=""&&pwe!=""){
             firebaseAuth = firebaseAuth.getInstance();
-            firebaseAuth.signInWithEmailAndPassword(id, pwe)
+            firebaseAuth.signInWithEmailAndPassword(email, pwe)
                     .addOnCompleteListener(LodingActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {//성공했을때
+                                Log.d("asdf",1+"");
 
+                                yesterday=database.getday(LodingActivity.this);
+                                Log.d("adsf",yesterday+"");
+
+                                day=database.nextday(yesterday);
+                                if(day==true){
+                                    database.clear(id,yesterday, 100,ss);
+                                }
+                                Log.d("1",3+"");
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
 
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);

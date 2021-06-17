@@ -63,7 +63,6 @@ public class JoinActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     int idx = email.indexOf("@");
                                     id = email.substring(0, idx);
-
                                     database.inputuser(id,name);
                                     database.login(JoinActivity.this,email,id,pwe);
                                     database.saveday(JoinActivity.this);

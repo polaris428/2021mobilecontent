@@ -146,19 +146,19 @@ public class GraphFragment_1 extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                int count=-1;
+                int count = -1;
 
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     int url = ds.getValue(Integer.class);
 
                     daylist.add(url);
 
-                    if(arrlist.size()==daylist.size()){
+                    if (arrlist.size() == daylist.size()) {
 
-                        for(int i : daylist)
-                        {
+                        for (int i : daylist) {
                             count++;
-                            if(count>0) entries.add(new Entry(i,arrlist.get(count)));
+                            if (count > 0)
+                                entries.add(new Entry(i, arrlist.get(count)));
 
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 섭취량");
                             lineDataSet.setLineWidth(2);
@@ -197,18 +197,19 @@ public class GraphFragment_1 extends Fragment {
                             lineChart.animateY(2000, Easing.EasingOption.EaseInCubic);
                             lineChart.invalidate();
 
-                            MyMarkerView marker = new MyMarkerView(ct,R.layout.activity_my_marker_view);
+                            MyMarkerView marker = new MyMarkerView(ct, R.layout.activity_my_marker_view);
                             marker.setChartView(lineChart);
                             lineChart.setMarker(marker);
-
-
                         }
-                    }
 
+
+                    }
                 }
 
-
             }
+
+
+
 
             @Override
             public void onCancelled(DatabaseError error) {

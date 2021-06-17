@@ -106,7 +106,7 @@ public class Database {
         int today=Integer.parseInt(getday);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference days = database.getReference("UserProfile").child(id).child("day").child(count1);
-        days.setValue(today);
+        days.setValue(today-1);//수정필요요ㅛ요요용요
         DatabaseReference arr = database.getReference("UserProfile").child(id).child("arr").child(count1);
         arr.setValue(caffeine);
         DatabaseReference time = database.getReference("UserProfile").child(id).child("time").child(count1);
@@ -174,7 +174,7 @@ public class Database {
 
         //저장된 날짜를 가져오는 함수
         SharedPreferences sf = context.getSharedPreferences("Day",context.MODE_PRIVATE);
-        int getday = sf.getInt("day",0);
+        int getday = sf.getInt("day",1);
 
 
         return getday;
