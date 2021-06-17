@@ -1,8 +1,10 @@
 package com.example.a2021mobilecontent.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.a2021mobilecontent.Database;
+import com.example.a2021mobilecontent.NetworkStatus;
 import com.example.a2021mobilecontent.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,39 +30,49 @@ public class LodingActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     Database database = new Database();
     boolean day;
-    int  today;
+    int today;
     int yesterday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loding_activity);
+        int status = NetworkStatus.getConnectivityStatus(getApplicationContext());
+        if (status == NetworkStatus.TYPE_MOBILE) {
 
-        SharedPreferences sf = getSharedPreferences("Login",MODE_PRIVATE);
-        String email = sf.getString("email","");
-        String pwe = sf.getString("pwe","");
-        String id=sf.getString("id","");
-        SharedPreferences sellp = getSharedPreferences("time",MODE_PRIVATE);
-        int  ss = sellp.getInt("time",0);
-        if(email!=""&&pwe!=""){
+        } else if (status == NetworkStatus.TYPE_WIFI) {
+
+        } else {
+            showDialog();
+
+
+        }
+
+        SharedPreferences sf = getSharedPreferences("Login", MODE_PRIVATE);
+        String email = sf.getString("email", "");
+        String pwe = sf.getString("pwe", "");
+        String id = sf.getString("id", "");
+        SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
+        int ss = sellp.getInt("time", 0);
+        if (email != "" && pwe != "") {
             firebaseAuth = firebaseAuth.getInstance();
             firebaseAuth.signInWithEmailAndPassword(email, pwe)
                     .addOnCompleteListener(LodingActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {//성공했을때
-                                Log.d("asdf",1+"");
+                                Log.d("asdf", 1 + "");
 
-                                yesterday=database.getday(LodingActivity.this);
-                                Log.d("adsf",yesterday+"");
+                                yesterday = database.getday(LodingActivity.this);
+                                Log.d("adsf", yesterday + "");
 
-                                day=database.nextday(yesterday);
-                                if(day==true){
-                                    SharedPreferences sf =getSharedPreferences("Caffeine",MODE_PRIVATE);
-                                    int caffeine = sf.getInt("caffeine",0);
-                                    database.clear(id,yesterday, caffeine,ss);
+                                day = database.nextday(yesterday);
+                                if (day == true) {
+                                    SharedPreferences sf = getSharedPreferences("Caffeine", MODE_PRIVATE);
+                                    int caffeine = sf.getInt("caffeine", 0);
+                                    database.clear(id, yesterday, caffeine, ss);
                                 }
-                                Log.d("1",3+"");
+                                Log.d("1", 3 + "");
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
 
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -71,20 +84,26 @@ public class LodingActivity extends AppCompatActivity {
                         }
                     });
 
-        }
-
-
-        else{
+        } else {
             Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
 
-
-
-
     }
 
+    void showDialog() {
+        AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LodingActivity.this).setTitle("네트워크 에러").setMessage("인터넷 연결을 확인해주세요").setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        AlertDialog msgDlg = msgBuilder.create();
+        msgDlg.setCanceledOnTouchOutside(false);
+        msgDlg.setCancelable(false);
+        msgDlg.show();
+    }
 
 
 }

@@ -69,7 +69,9 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:tabSelectedTextColor="#DF943D"
+                app:tabIndicatorColor="#DF943D">
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab_Item1"

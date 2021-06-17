@@ -137,9 +137,9 @@ public class GraphFragment_2 extends Fragment {
                             LineDataSet lineDataSet = new LineDataSet(entries, "잠잔시간");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
-                            lineDataSet.setCircleColor(Color.parseColor("#000000"));
+                            lineDataSet.setCircleColor(Color.parseColor("#ff7f00"));
                             lineDataSet.setCircleColorHole(Color.rgb(214,116,0));
-                            lineDataSet.setColor(Color.parseColor("#000000"));
+                            lineDataSet.setColor(Color.parseColor("#ff7f00"));
                             lineDataSet.setDrawCircleHole(true);
                             lineDataSet.setDrawCircles(true);
                             lineDataSet.setDrawHorizontalHighlightIndicator(false);

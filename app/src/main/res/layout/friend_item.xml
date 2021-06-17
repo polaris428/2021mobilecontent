@@ -11,15 +11,23 @@
     </ImageView>
     <TextView
         android:id="@+id/name"
+        android:text="이름"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="center">
 
     </TextView>
 
     <TextView
         android:id="@+id/c"
+        android:text="200"
+        android:layout_marginHorizontal="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center">
 
     </TextView>
 
