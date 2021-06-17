@@ -28,9 +28,7 @@ public class JoinActivity extends AppCompatActivity {
     String id;
     FirebaseAuth firebaseAuth;
     Database database=new Database();
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private String TAG;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

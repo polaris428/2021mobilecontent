@@ -138,7 +138,7 @@ public class GraphFragment_2 extends Fragment {
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
                             lineDataSet.setCircleColor(Color.parseColor("#000000"));
-                            lineDataSet.setCircleColorHole(Color.BLUE);
+                            lineDataSet.setCircleColorHole(Color.rgb(214,116,0));
                             lineDataSet.setColor(Color.parseColor("#000000"));
                             lineDataSet.setDrawCircleHole(true);
                             lineDataSet.setDrawCircles(true);

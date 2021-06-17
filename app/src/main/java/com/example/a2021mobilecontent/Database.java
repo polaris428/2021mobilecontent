@@ -22,8 +22,6 @@ import java.util.List;
 public class Database {
     int mm;
     int a;
-
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     public void clear(String id,int day,int caffeine,int houre){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -140,7 +138,10 @@ public class Database {
         databaseReference.child("UserProfile").child(id).child("arr").setValue(num);
         databaseReference.child("UserProfile").child(id).child("time").setValue(num);
         databaseReference.child("UserProfile").child(id).child("day").child("0").setValue(1);
-
+        databaseReference.child("UserProfile").child(id).child("day").child("1").setValue(todaysever()-1);
+        for(int i=0;i<8;i++){
+            databaseReference.child("UserProfile").child(id).child("day").child(i+2+"").setValue(todaysever()+i);
+        }
     }
 
 
@@ -171,10 +172,10 @@ public class Database {
     }
 
     public int getday(Context context){
-
+        int day=today();
         //저장된 날짜를 가져오는 함수
         SharedPreferences sf = context.getSharedPreferences("Day",context.MODE_PRIVATE);
-        int getday = sf.getInt("day",1);
+        int getday = sf.getInt("day",todaysever()-1);
 
 
         return getday;
@@ -187,6 +188,18 @@ public class Database {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        String getday = sdf.format(date);
+        int today=Integer.parseInt(getday);
+
+        return  today;
+
+    }
+    public int todaysever(){
+        //오늘 날짜 구하는 함수
+        List<Entry> entries = new ArrayList<>();
+        long now = System.currentTimeMillis();
+        Date date = new Date(now);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
         String getday = sdf.format(date);
         int today=Integer.parseInt(getday);
 

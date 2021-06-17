@@ -184,9 +184,15 @@ public class FragmentCaffeine extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 value = dataSnapshot.getValue(Integer.class);
-                GraphFragment_1 g=new GraphFragment_1();
                 binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
+                SharedPreferences sharedPreferences= getContext().getSharedPreferences("Caffeine", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
+                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                editor.putInt("caffeine",value);
+
+
+
+                editor.commit();
                 if(value==0){
                     binding.recyclerView.setVisibility(View.GONE);
                 }else {

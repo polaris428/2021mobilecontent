@@ -55,7 +55,9 @@ public class LodingActivity extends AppCompatActivity {
 
                                 day=database.nextday(yesterday);
                                 if(day==true){
-                                    database.clear(id,yesterday, 100,ss);
+                                    SharedPreferences sf =getSharedPreferences("Caffeine",MODE_PRIVATE);
+                                    int caffeine = sf.getInt("caffeine",0);
+                                    database.clear(id,yesterday, caffeine,ss);
                                 }
                                 Log.d("1",3+"");
                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);

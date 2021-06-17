@@ -29,6 +29,7 @@
             android:text="Sleeping caffenie"
             android:textColor="#000000"
             android:textSize="25sp"
+            android:fontFamily="@font/yanonekaffeesatztregular"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -83,12 +84,16 @@
                 app:cfl_border_width="12dp"
                 app:cfl_progress="80"
                 app:cfl_wave_amplitude="0.06"
-                app:cfl_wave_color="#DF943D"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:cfl_wave_color="#DF943D" />
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignBottom="@+id/popbtn"
+                android:layout_gravity="center"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="5dp">
 
+            </ImageView>
 
         </FrameLayout>
 
