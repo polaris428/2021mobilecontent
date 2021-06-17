@@ -37,8 +37,6 @@ public class Database {
         }
 
 
-
-
     public void nama(String id, TextView textView){
 
         DatabaseReference name= database.getReference("UserProfile").child(id).child("name");
@@ -90,7 +88,6 @@ public class Database {
 
 
         }
-
 
 
 

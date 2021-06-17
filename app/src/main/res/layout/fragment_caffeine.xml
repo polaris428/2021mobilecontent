@@ -86,11 +86,12 @@
                 app:cfl_wave_amplitude="0.06"
                 app:cfl_wave_color="#DF943D" />
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_alignBottom="@+id/popbtn"
                 android:layout_gravity="center"
                 android:layout_marginRight="8dp"
+                android:src="@drawable/ic_group"
                 android:layout_marginBottom="5dp">
 
             </ImageView>

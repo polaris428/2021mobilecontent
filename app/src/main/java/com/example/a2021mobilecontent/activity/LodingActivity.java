@@ -53,6 +53,7 @@ public class LodingActivity extends AppCompatActivity {
         String pwe = sf.getString("pwe", "");
         String id = sf.getString("id", "");
         SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
+        Log.d("adsfdasfsaffsfd",pwe);
         int ss = sellp.getInt("time", 0);
         if (email != "" && pwe != "") {
             firebaseAuth = firebaseAuth.getInstance();
@@ -86,6 +87,7 @@ public class LodingActivity extends AppCompatActivity {
 
         } else {
             Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
 

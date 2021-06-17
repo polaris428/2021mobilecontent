@@ -35,17 +35,36 @@
         android:timePickerMode="spinner">
 
     </TimePicker>
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </Button>
-    <TextView
-        android:id="@+id/tv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#00FFFFFF">
 
-    </TextView>
+        </Button>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_round">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="시간 계산하기"
+            android:textSize="25sp">
+
+        </TextView>
+    </FrameLayout>
+
+
+
 
 </LinearLayout>
