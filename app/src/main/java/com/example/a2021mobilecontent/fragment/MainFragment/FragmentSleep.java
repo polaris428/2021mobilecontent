@@ -114,6 +114,9 @@ public class FragmentSleep extends Fragment {
         if(h3<0){
             h3=h3*-1;
         }
+        if(m3<0){
+            m3=m3*-1;
+        }
         binding.tv.setText(h3+"시간: "+m3+"분");
         SharedPreferences sharedPreferences= getContext().getSharedPreferences("time", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
         SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언

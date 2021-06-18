@@ -140,7 +140,7 @@ public class JoinActivity extends AppCompatActivity {
                     if(pawtrue&&emailtrue&&naemtrue) {
                         final String email = binding.idinput.getText().toString().trim();
                         final String pwe = binding.pawinput1.getText().toString().trim();
-                        //final String name =binding.nameinput.getText().toString().trim();
+                        final String name =binding.nameinput.getText().toString().trim();
 
                         firebaseAuth.createUserWithEmailAndPassword(email, pwe)
                                 .addOnCompleteListener(JoinActivity.this, new OnCompleteListener<AuthResult>() {

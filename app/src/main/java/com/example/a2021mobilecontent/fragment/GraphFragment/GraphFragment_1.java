@@ -159,12 +159,8 @@ public class GraphFragment_1 extends Fragment {
                             count++;
                             if (count > 0)
                                 if(i>0){
-
                                     entries.add(new Entry(i, arrlist.get(count)));
-                                }else{
-                                    count--;
-                                }
-
+                                }else{ count--; }
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 섭취량");
                             lineDataSet.setLineWidth(2);
                             lineDataSet.setCircleRadius(6);
@@ -176,26 +172,20 @@ public class GraphFragment_1 extends Fragment {
                             lineDataSet.setDrawHorizontalHighlightIndicator(false);
                             lineDataSet.setDrawHighlightIndicators(false);
                             lineDataSet.setDrawValues(false);
-
                             LineData lineData = new LineData(lineDataSet);
                             lineChart.setData(lineData);
-
                             XAxis xAxis = lineChart.getXAxis();
                             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                             xAxis.setTextColor(Color.BLACK);
                             xAxis.enableGridDashedLine(8, 24, 0);
-
                             YAxis yLAxis = lineChart.getAxisLeft();
                             yLAxis.setTextColor(Color.BLACK);
-
                             YAxis yRAxis = lineChart.getAxisRight();
                             yRAxis.setDrawLabels(false);
                             yRAxis.setDrawAxisLine(false);
                             yRAxis.setDrawGridLines(false);
-
                             Description description = new Description();
                             description.setText("");
-
                             lineChart.setDoubleTapToZoomEnabled(false);
                             lineChart.setDrawGridBackground(false);
                             lineChart.setDescription(description);

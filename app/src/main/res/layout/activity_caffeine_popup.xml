@@ -51,7 +51,7 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:backgroundTint="#ffffff"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/a"
                 android:layout_margin="10dp"
                 android:onClick="Kinds">
             </ImageButton>

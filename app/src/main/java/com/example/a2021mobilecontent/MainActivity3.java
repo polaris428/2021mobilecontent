@@ -29,6 +29,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -66,7 +71,7 @@ public class MainActivity3 extends AppCompatActivity {
     Bitmap mBitmap;
     TextView textView;
 
-    public String ip="http://18.156.18.81:8080";
+    public String ip="18.156.18.81:8080";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +85,7 @@ public class MainActivity3 extends AppCompatActivity {
         Button btn=findViewById(R.id.btn);
         askPermissions();
         initRetrofitClient();
+        getip();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +118,7 @@ public class MainActivity3 extends AppCompatActivity {
     private void initRetrofitClient() {
         OkHttpClient client = new OkHttpClient.Builder().build();
 
-        apiService = new Retrofit.Builder().baseUrl("http://8148d3bd05d0.ngrok.io/").client(client).build().create(ApiService.class);
+        apiService = new Retrofit.Builder().baseUrl("http://"+ip).client(client).build().create(ApiService.class);
     }
 
 
@@ -312,8 +318,6 @@ public class MainActivity3 extends AppCompatActivity {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
-
-
             RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
             MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
             RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload");
@@ -368,6 +372,27 @@ public class MainActivity3 extends AppCompatActivity {
                 }
                 break;
         }
+    }
+    public  void getip(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("ip");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                ip=value;
+                Log.d("affsadffdf",ip);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
     }
 }
 

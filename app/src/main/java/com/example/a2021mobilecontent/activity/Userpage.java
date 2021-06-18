@@ -49,7 +49,6 @@ public class Userpage extends AppCompatActivity {
         binding.logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("dasdffafs","asfasdsf");
                 SharedPreferences pref = getSharedPreferences("Login", MODE_PRIVATE);
 
                 SharedPreferences.Editor editor = pref.edit();
@@ -58,9 +57,6 @@ public class Userpage extends AppCompatActivity {
                 editor.remove("pwe");
                 editor.remove("email");
                 editor.commit();
-
-
-                Log.d("dasdffafs","asfasdsf");
 
                 Intent intent = new Intent(Userpage.this, LoginActivity.class);
 

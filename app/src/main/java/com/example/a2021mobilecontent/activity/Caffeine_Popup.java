@@ -52,7 +52,7 @@ public class Caffeine_Popup extends AppCompatActivity {
                 if(btn==true){
                     Intent intent = new Intent(Caffeine_Popup.this, MainActivity.class);
 
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
                     startActivity(intent);
                     overridePendingTransition(0, 0);
@@ -66,7 +66,6 @@ public class Caffeine_Popup extends AppCompatActivity {
 
     public void database(){
         binding.svLayout.setVisibility(View.GONE);
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -123,7 +122,7 @@ public class Caffeine_Popup extends AppCompatActivity {
 
         Intent intent = new Intent(Caffeine_Popup.this, MainActivity.class);
 
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
         startActivity(intent);
         overridePendingTransition(0, 0);

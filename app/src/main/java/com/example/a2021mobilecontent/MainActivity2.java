@@ -3,9 +3,17 @@ package com.example.a2021mobilecontent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,95 +29,36 @@ import java.util.Arrays;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    TextView jsonView;
-    String ip2 = ((MainActivity3) MainActivity3.context_main).ip;
 
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+    TextView inputName;
+    ImageView imageView;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        jsonView = findViewById(R.id.jsonObj);
-        new JSONTask().execute("/http://\"+ip2+\".ngrok.io");
+        imageView=findViewById(R.id.imageView);
+
+        inputName=findViewById(R.id.inputName);
+
+
     }
+    public void a(View view) {
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
-    public class JSONTask extends AsyncTask<String,String,String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            JSONObject jsonObject = new JSONObject();
-
-
-
-
-            
-            try {
-                jsonObject.accumulate("user_id", "androidTest");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                jsonObject.accumulate("name", "yun");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-            HttpURLConnection con = null;
-            BufferedReader reader = null;
-            try {
-                URL url = new URL(urls[0]);
-
-                con = (HttpURLConnection)url.openConnection();
-                con.connect();
-
-                InputStream stream = con.getInputStream();
-
-                reader = new BufferedReader(new InputStreamReader(stream));
-
-                StringBuffer buffer = new StringBuffer();
-
-                String line = "";
-
-                while ((line = reader.readLine()) != null) buffer.append(line);
-
-
-                return buffer.toString();
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }finally {
-                con.disconnect();
-                try {
-                    if(reader != null)
-                        reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        StorageReference rootRef = firebaseStorage.getReference();
+        String s = "result.png";
+        StorageReference img = rootRef.child(s);
+        if (img != null) {
+            img.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Glide.with(MainActivity2.this).load(uri).into(imageView);
                 }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            String[] array=s.split(",");
-            for(int i=0;i<array.length;i++){
-                System.out.println(array[i]);
-            }
-            int[] numss = Arrays.asList(array).stream().mapToInt(Integer::parseInt).toArray();
-            System.out.println(numss.getClass().getName());
-            jsonView.setText(numss[0]+1+"");
-
-            jsonView.setText(s);
-
-
-
+            });
         }
     }
 }

@@ -30,7 +30,7 @@
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
-        android:title="rank"
+        android:title="friend"
         android:icon="@drawable/ic_tro"
         app:cnb_iconColor="#DF943D">
 

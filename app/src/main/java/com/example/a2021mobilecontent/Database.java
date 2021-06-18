@@ -30,7 +30,7 @@ public class Database {
     int mm;
     int a;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public void clear(String id,int day,int caffeine,int houre){
+    public void clear(String id,Context context,int caffeine,int houre){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference Caffeine = database.getReference("UserProfile").child(id).child("Caffeine");
 
@@ -172,12 +172,12 @@ public class Database {
         List<Entry> entries = new ArrayList<>();
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
         String getday = sdf.format(date);
         int today=Integer.parseInt(getday);
         SharedPreferences sharedPreferences= context.getSharedPreferences("Day",context.MODE_PRIVATE);    // test 이름의 기본모드 설정
         SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor.putInt("id",today);
+        editor.putInt("day",today);
         editor.commit();
 
     }
@@ -198,7 +198,7 @@ public class Database {
         List<Entry> entries = new ArrayList<>();
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
         String getday = sdf.format(date);
         int today=Integer.parseInt(getday);
 
@@ -222,9 +222,11 @@ public class Database {
         //int day=전날
 
         int today=today();
-        if(today>=day){
+        if(today>day){
+            Log.d("날짜",today+"+"+day);
             return  true;
         }else {
+            Log.d("날짜",today+"+"+day);
             return  false;
         }
 

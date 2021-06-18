@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">2021 mobile content</string>
-    
+    <string name="app_name">Sleeping caffeine</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="c">카페인은 먹을수록 몸이 더 많은 카페인을 요구합니다.</string>
     <string name="c1">카페인은 먹을수록 몸이 더 많은 카페인을 요구합니다.</string>
@@ -8,10 +8,10 @@
     <string name="c3">과도한 카페인은 청소년에게 \n불면증, 빈혈, 성장저하를 유발합니다.</string>
     <string name="c4">커피는 힘 이라는 뜻으로부터 변형되어 탄생했습니다.</string>
     <string name="c5">한국인은 카페인을 연간 353잔을 평균으로 섭취한다.\n(세계평균보다 2.7배 높음)</string>
-    <string name="c6">빈맥, 부정맥, 위장병이 있는 사람은 카페인을 마시면 좋지 않다.</string>
-    <string name="c7">카페인 음료를 먹기 부담스러우면 \n디카페인 음료를 마시는 것도 좋다.</string>
+    <string name="c6">빈맥, 부정맥, 위장병이 있는 사람은 카페인을 마시면 좋지 않습니다.</string>
+    <string name="c7">카페인 음료를 먹기 부담스러우면 \n디카페인 음료를 마시는 것도 좋습니다.</string>
     <string name="c8">카페인은 중독성이 있습니다</string>
-    <string name="c9">카페인은 어른보다 어린이에게 해롭다</string>
+    <string name="c9">카페인은 어른보다 어린이에게 해롭습니다</string>
     <string name="c10">카페인에 자극을 받아 분비된 도파민과 노르 에피네프린 등은 우울감을 감소시키는 효과도 있습니다.</string>
 
 

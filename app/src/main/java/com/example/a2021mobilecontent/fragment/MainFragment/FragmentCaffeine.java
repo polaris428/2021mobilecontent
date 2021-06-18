@@ -177,10 +177,7 @@ public class FragmentCaffeine extends Fragment {
                 value = dataSnapshot.getValue(Integer.class);
                 binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
-                SharedPreferences sharedPreferences= getContext().getSharedPreferences("Caffeine", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
-                SharedPreferences.Editor editor= sharedPreferences.edit();
-                editor.putInt("caffeine",value);
-                editor.commit();
+
                 if(value==0){
                     binding.recyclerView.setVisibility(View.GONE);
                 }else {

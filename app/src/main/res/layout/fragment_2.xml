@@ -45,7 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:fontFamily="@font/robotoregular"
-                android:text="Sleeping caffeni"
+                android:text="Sleeping caffeine"
                 android:layout_gravity="center"
                 android:textColor="#000000"
                 android:textSize="20dp">

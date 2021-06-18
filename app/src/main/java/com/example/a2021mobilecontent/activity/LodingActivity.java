@@ -45,66 +45,74 @@ public class LodingActivity extends AppCompatActivity {
 
         int status = NetworkStatus.getConnectivityStatus(getApplicationContext());
         if (status == NetworkStatus.TYPE_MOBILE) {
-
+            start();
         } else if (status == NetworkStatus.TYPE_WIFI) {
-
+            start();
         } else {
             showDialog();
 
 
         }
 
-        SharedPreferences sf = getSharedPreferences("Login", MODE_PRIVATE);
-        String email = sf.getString("email", "");
-        String pwe = sf.getString("pwe", "");
-        String id = sf.getString("id", "");
-        SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
-        int ss = sellp.getInt("time", 0);
-
-
-        if (email != "" && pwe != "") {
-            firebaseAuth = firebaseAuth.getInstance();
-            firebaseAuth.signInWithEmailAndPassword(email, pwe)
-                    .addOnCompleteListener(LodingActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {//성공했을때
-                                yesterday = database.getday(LodingActivity.this);
-                                day = database.nextday(yesterday);
-                                if (day == true) {
-                                    SharedPreferences sf = getSharedPreferences("Caffeine", MODE_PRIVATE);
-                                    int caffeine = sf.getInt("caffeine", 0);
-                                    database.clear(id, yesterday, caffeine, ss);
-                                }
-                                Log.d("1", 3 + "");
-                                Intent intent = new Intent(LodingActivity.this, MainActivity.class);
-
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(LodingActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                            }
-                        }
-                    });
-
-        } else {
-            Handler mHandler = new Handler();
-            mHandler.postDelayed(new Runnable()  {
-                public void run() {
-                    Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            }, 3000); // 0.5초후
-
-        }
-
-
     }
+     void start(){
+         SharedPreferences sf = getSharedPreferences("Login", MODE_PRIVATE);
+         String email = sf.getString("email", "");
+         String pwe = sf.getString("pwe", "");
+         String id = sf.getString("id", "");
+         SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
+         int ss = sellp.getInt("time", 0);
 
+
+         if (email != "" && pwe != "") {
+             firebaseAuth = firebaseAuth.getInstance();
+             firebaseAuth.signInWithEmailAndPassword(email, pwe)
+                     .addOnCompleteListener(LodingActivity.this, new OnCompleteListener<AuthResult>() {
+                         @Override
+                         public void onComplete(@NonNull Task<AuthResult> task) {
+                             if (task.isSuccessful()) {//성공했을때
+                                 yesterday = database.getday(LodingActivity.this);
+                                 day = database.nextday(yesterday);
+
+
+                                 if (day == true) {
+                                     database.saveday(LodingActivity.this);
+                                     SharedPreferences sf = getSharedPreferences("Caffeine", MODE_PRIVATE);
+                                     int caffeine = sf.getInt("caffeine", 0);
+                                     database.clear(id, LodingActivity.this, caffeine, ss);
+
+
+
+                                 }
+                                 Log.d("1", 3 + "");
+                                 Intent intent = new Intent(LodingActivity.this, MainActivity.class);
+
+                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                 startActivity(intent);
+                             } else {
+                                 Toast.makeText(LodingActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                                 Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
+                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                 startActivity(intent);
+                             }
+                         }
+                     });
+
+         } else {
+             Handler mHandler = new Handler();
+             mHandler.postDelayed(new Runnable()  {
+                 public void run() {
+                     Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
+                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                     startActivity(intent);
+                 }
+             }, 3000); // 0.5초후
+
+         }
+
+
+
+     }
     void showDialog() {
         AlertDialog.Builder msgBuilder = new AlertDialog.Builder(LodingActivity.this).setTitle("네트워크 에러").setMessage("인터넷 연결을 확인해주세요").setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
