@@ -16,28 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.2021MobileContent"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activity.Caffeine_Popup"/>
-
-
-
+        <activity android:name=".activity.Userpage"></activity>
+        <activity android:name=".activity.Caffeine_Popup" />
         <activity android:name=".activity.LodingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
         <activity
             android:name=".MyMarkerView"
             tools:ignore="Instantiatable" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.JoinActivity"
-            android:windowSoftInputMode="adjustPan"
-
-           />
+        <activity
+            android:name=".activity.JoinActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity3" />

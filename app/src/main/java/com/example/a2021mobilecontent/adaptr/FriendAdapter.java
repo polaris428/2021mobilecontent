@@ -43,7 +43,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.CustomView
 
 
         holder.name.setText(arrayList.get(position).getName());
-        holder.c.setText(arrayList.get(position).getCaffeine()+"");
+        holder.c.setText(arrayList.get(position).getCaffeine()+"mg");
         Friend item = arrayList.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

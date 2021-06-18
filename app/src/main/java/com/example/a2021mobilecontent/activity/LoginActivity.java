@@ -111,7 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {//성공했을때
-                                            Log.d("fasfafsafdsa",pwd);
                                             database.login(LoginActivity.this,email,id,pwd);
                                             long now = System.currentTimeMillis();
                                             Date date = new Date(now);
@@ -121,10 +120,8 @@ public class LoginActivity extends AppCompatActivity {
                                             SharedPreferences time=getSharedPreferences("DAY", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
                                             SharedPreferences.Editor editor1= time.edit(); //sharedPreferences를 제어할 editor를 선언
                                             editor1.putInt("day",today);
-
                                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
                                             startActivity(intent);
                                         } else {
                                             Toast.makeText(LoginActivity.this, "아이디 또는 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();

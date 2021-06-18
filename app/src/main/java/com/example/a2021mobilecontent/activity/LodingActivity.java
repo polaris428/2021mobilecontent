@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -53,7 +54,6 @@ public class LodingActivity extends AppCompatActivity {
         String pwe = sf.getString("pwe", "");
         String id = sf.getString("id", "");
         SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
-        Log.d("adsfdasfsaffsfd",pwe);
         int ss = sellp.getInt("time", 0);
         if (email != "" && pwe != "") {
             firebaseAuth = firebaseAuth.getInstance();
@@ -62,11 +62,7 @@ public class LodingActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {//성공했을때
-                                Log.d("asdf", 1 + "");
-
                                 yesterday = database.getday(LodingActivity.this);
-                                Log.d("adsf", yesterday + "");
-
                                 day = database.nextday(yesterday);
                                 if (day == true) {
                                     SharedPreferences sf = getSharedPreferences("Caffeine", MODE_PRIVATE);
@@ -78,17 +74,25 @@ public class LodingActivity extends AppCompatActivity {
 
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-
                             } else {
                                 Toast.makeText(LodingActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                             }
                         }
                     });
 
         } else {
-            Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(new Runnable()  {
+                public void run() {
+                    Intent intent = new Intent(LodingActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            }, 3000); // 0.5초후
+
         }
 
 

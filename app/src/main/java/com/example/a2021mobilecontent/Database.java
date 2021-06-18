@@ -47,6 +47,7 @@ public class Database {
                 // whenever data at this location is updated.
                 String username = dataSnapshot.getValue(String.class);
                 textView.setText(username);
+                Log.d("이름은",username);
 
             }
 

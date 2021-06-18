@@ -85,6 +85,7 @@
                 app:cfl_progress="80"
                 app:cfl_wave_amplitude="0.06"
                 app:cfl_wave_color="#DF943D" />
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"

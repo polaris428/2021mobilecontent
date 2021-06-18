@@ -1,5 +1,6 @@
 package com.example.a2021mobilecontent.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,10 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.a2021mobilecontent.Database;
 import com.example.a2021mobilecontent.R;
+import com.example.a2021mobilecontent.activity.LodingActivity;
+import com.example.a2021mobilecontent.activity.MainActivity;
+import com.example.a2021mobilecontent.activity.Userpage;
 import com.example.a2021mobilecontent.adaptr.CustomAdapter;
 import com.example.a2021mobilecontent.adaptr.FriendAdapter;
 import com.example.a2021mobilecontent.data.Friend;
@@ -91,6 +96,9 @@ public class Fragment4 extends Fragment {
         arrayList = new ArrayList<>(); // User 객체를 담을 어레이 리스트 (어댑터쪽으로)
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         TextView textView=v.findViewById(R.id.name);
+        Button button=v.findViewById(R.id.btn);
+
+
         SharedPreferences sf = getContext().getSharedPreferences("Login",getContext().MODE_PRIVATE);
         String id = sf.getString("id","");
         d.nama(id,textView);
@@ -116,7 +124,15 @@ public class Fragment4 extends Fragment {
         adapter = new FriendAdapter(arrayList, getContext());
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Userpage.class);
 
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
         return v;
 
     }

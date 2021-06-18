@@ -88,7 +88,6 @@ public class FragmentSleep extends Fragment {
             @Override
             public void onClick(View v) {
                 time(timesleeph,timesleepm,wakeuptimeh,wakeuptimem);
-
             }
         });
         return view;
@@ -96,14 +95,10 @@ public class FragmentSleep extends Fragment {
     public void OnTimeChanged1(TimePicker view, int h, int m){
         timesleeph=h;
         timesleepm=m;
-
-
     }
     public void OnTimeChanged2(TimePicker view, int h, int m){
         wakeuptimeh=h;
         wakeuptimem=m;
-
-
     }
     public void time(int h1,int m1,int h2,int m2){
         int m3;

@@ -169,15 +169,11 @@ public class FragmentCaffeine extends Fragment {
             }
         });
 
-
-
         adapter = new UserAdapter(arrayList, getContext());
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
 
         RecyclerDecoration spaceDecoration = new RecyclerDecoration(30);
         recyclerView.addItemDecoration(spaceDecoration);
-        //if(a==0) recyclerView.setVisibility(View.VISIBLE);
-        //else recyclerView.setVisibility(View.GONE);
         Caffeine.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -187,11 +183,8 @@ public class FragmentCaffeine extends Fragment {
                 binding.circularFillableLoaders.setProgress(100-(value/3));
                 binding.intake.setText("일일 섭취량\n"+value+"/300mg");
                 SharedPreferences sharedPreferences= getContext().getSharedPreferences("Caffeine", Context.MODE_PRIVATE);    // test 이름의 기본모드 설정
-                SharedPreferences.Editor editor= sharedPreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+                SharedPreferences.Editor editor= sharedPreferences.edit();
                 editor.putInt("caffeine",value);
-
-
-
                 editor.commit();
                 if(value==0){
                     binding.recyclerView.setVisibility(View.GONE);
