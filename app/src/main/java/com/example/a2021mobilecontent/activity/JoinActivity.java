@@ -34,6 +34,7 @@ public class JoinActivity extends AppCompatActivity {
     Database database=new Database();
     boolean emailtrue=false;
     boolean pawtrue=false;
+    boolean naemtrue=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +118,14 @@ public class JoinActivity extends AppCompatActivity {
                 if(p!=null&&p1!=null&&emile!=null&&name!=null){
                     binding.joinbtn.setBackground(getDrawable(R.drawable.rounded_btncolor));
                 }
+                if (name==null){
+                    naemtrue=false;
+                    binding.nametext.setVisibility(View.VISIBLE);
+
+                }else{
+                    naemtrue=true;
+                    binding.nametext.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
@@ -128,7 +137,7 @@ public class JoinActivity extends AppCompatActivity {
             binding.joinbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(pawtrue==true&&emailtrue==true) {
+                    if(pawtrue&&emailtrue&&naemtrue) {
                         final String email = binding.idinput.getText().toString().trim();
                         final String pwe = binding.pawinput1.getText().toString().trim();
                         //final String name =binding.nameinput.getText().toString().trim();

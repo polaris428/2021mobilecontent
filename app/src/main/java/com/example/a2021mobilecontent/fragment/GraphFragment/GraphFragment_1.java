@@ -158,7 +158,12 @@ public class GraphFragment_1 extends Fragment {
                         for (int i : daylist) {
                             count++;
                             if (count > 0)
-                                entries.add(new Entry(i, arrlist.get(count)));
+                                if(i>0){
+
+                                    entries.add(new Entry(i, arrlist.get(count)));
+                                }else{
+                                    count--;
+                                }
 
                             LineDataSet lineDataSet = new LineDataSet(entries, "카페인 섭취량");
                             lineDataSet.setLineWidth(2);

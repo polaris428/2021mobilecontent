@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.MainFragment.FragmentSleep"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +44,8 @@
             android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="#00FFFFFF">
+            android:backgroundTint="#00FFFFFF"
+            style="?android:attr/borderlessButtonStyle">
 
         </Button>
         <ImageView

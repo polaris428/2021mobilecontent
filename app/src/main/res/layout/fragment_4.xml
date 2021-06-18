@@ -25,8 +25,13 @@
         </Button>
         <TextView
             android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            android:textSize="30dp"
+            android:layout_gravity="center"
+
+            >
 
         </TextView>
 

@@ -45,7 +45,10 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.idinput.setText(email);
         binding.pweinput.setText(pwe);
-
+        if(email!=null&&pwe!=null){
+            idchak=true;
+            pwechak=true;
+        }
         binding.idinput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

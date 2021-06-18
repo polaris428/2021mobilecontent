@@ -10,6 +10,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.a2021mobilecontent.Database;
@@ -33,11 +36,13 @@ public class LodingActivity extends AppCompatActivity {
     boolean day;
     int today;
     int yesterday;
-
+    ImageView logo1;
+    Animation anim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loding_activity);
+
         int status = NetworkStatus.getConnectivityStatus(getApplicationContext());
         if (status == NetworkStatus.TYPE_MOBILE) {
 
@@ -55,6 +60,8 @@ public class LodingActivity extends AppCompatActivity {
         String id = sf.getString("id", "");
         SharedPreferences sellp = getSharedPreferences("time", MODE_PRIVATE);
         int ss = sellp.getInt("time", 0);
+
+
         if (email != "" && pwe != "") {
             firebaseAuth = firebaseAuth.getInstance();
             firebaseAuth.signInWithEmailAndPassword(email, pwe)

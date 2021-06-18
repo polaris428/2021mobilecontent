@@ -132,7 +132,10 @@ public class GraphFragment_2 extends Fragment {
 
                         for (int i : daylist) {
                             count++;
-                            if (count > 0) entries.add(new Entry(i, arrlist.get(count)));
+                            if (count > 0)
+                                if(i>0)
+                                entries.add(new Entry(i, arrlist.get(count)));
+                                else count--;
 
                             LineDataSet lineDataSet = new LineDataSet(entries, "잠잔시간");
                             lineDataSet.setLineWidth(2);

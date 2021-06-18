@@ -2,11 +2,18 @@ package com.example.a2021mobilecontent;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.a2021mobilecontent.activity.LodingActivity;
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +41,8 @@ public class Database {
 
 
             a = 1;
+
+
         }
 
 
@@ -112,7 +121,11 @@ public class Database {
 
         if(count==7){
             dc.setValue(1);
-
+            for(int i=0;i<8;i++){
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference();
+                databaseReference.child("UserProfile").child(id).child("day").child(i+2+"").setValue(0);
+            }
 
         }else {
 
@@ -138,7 +151,7 @@ public class Database {
         databaseReference.child("UserProfile").child(id).child("day").child("0").setValue(1);
         databaseReference.child("UserProfile").child(id).child("day").child("1").setValue(todaysever()-1);
         for(int i=0;i<8;i++){
-            databaseReference.child("UserProfile").child(id).child("day").child(i+2+"").setValue(todaysever()+i);
+            databaseReference.child("UserProfile").child(id).child("day").child(i+2+"").setValue(0);
         }
     }
 
@@ -218,5 +231,15 @@ public class Database {
 
 
     }
+
+
+
+
+
+
+
+
+
+
 
 }

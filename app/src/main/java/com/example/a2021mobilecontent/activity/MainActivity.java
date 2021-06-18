@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Handler mHandler = new Handler();
         mHandler.postDelayed(new Runnable()  {
             public void run() {
-                binding.wellcom.setVisibility(View.GONE);
+
             }
         }, 3000); // 0.5초후
         DatabaseReference name= database.getReference("UserProfile").child(id).child("name");
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String username = dataSnapshot.getValue(String.class);
-                binding.wellcom.setText(username+"님 환영합니다");
+
 
             }
 
