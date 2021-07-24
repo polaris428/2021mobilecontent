@@ -117,7 +117,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     private void initRetrofitClient() {
         OkHttpClient client = new OkHttpClient.Builder().build();
-
+        Log.d("새로운 아이피",ip);
         apiService = new Retrofit.Builder().baseUrl("http://"+ip).client(client).build().create(ApiService.class);
     }
 
